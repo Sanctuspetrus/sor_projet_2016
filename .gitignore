@@ -1,0 +1,6 @@
+*.class
+.metadata/
+sor_project_2016/build/
+*.MF
+Servers/
+RemoteSystemsTempFiles/
