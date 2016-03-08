@@ -8,11 +8,11 @@ import annotation.Table;
 @Table(name="t_livre")
 public class Billet {
 
-	Integer idBillet;
+	private Integer idBillet;
 		
-	Date jourValid;
+	private Date jourValid;
 	
-	// crÃ©ation des accesseurs
+	// création des accesseurs
 	// clic droit 
 	// Source Generate / Getters setters
 	// last member
@@ -30,6 +30,11 @@ public class Billet {
 	public void setJourValid(Date jourValid) {
 		this.jourValid = jourValid;
 	}
+	@Override
+	public String toString() {
+		return "Billet [idBillet=" + idBillet + ", jourValid=" + jourValid + "]";
+	}
 
+	
 	
 }
