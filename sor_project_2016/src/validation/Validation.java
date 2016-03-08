@@ -9,15 +9,10 @@ import annotation.NonVide;
 public class Validation {
 
 	boolean valide = true;
-	Hashtable <String,String> valeurs = 
-			new Hashtable<String,String>();
-	Hashtable <String,String> erreurs = 
-			new Hashtable<String,String>();
+	Hashtable <String,String> valeurs = new Hashtable<String,String>();
+	Hashtable <String,String> erreurs = new Hashtable<String,String>();
 	
-	public boolean nonVide(
-			Class c,
-			String param,
-			String val) {
+	public boolean nonVide(Class c, String param, String val) {
 		boolean res = true;
 		
 		if (val == null) {
