@@ -38,7 +38,8 @@ public class TestServlet extends HttpServlet {
 		+ prenom + "</h1>");
 		
 
-		Integer val = (Integer)request.getSession().getAttribute("nbpage");
+		Integer val = (Integer)request.getSession().
+			getAttribute("nbpage");
 		if (val == null) val = 1; else val++;
 		request.getSession().
 				setAttribute("nbpage", val);

@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TestServlet
+ * Servlet implementation class ServletBaliseImg
  */
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/ServletBaliseImg")
+public class ServletBaliseImg extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestServlet() {
+    public ServletBaliseImg() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,24 +29,7 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		out.println("<h1>Bonjour " + nom + " " 
-		+ prenom + "</h1>");
-		
-
-		Integer val = (Integer)request.getSession().getAttribute("nbpage");
-		if (val == null) val = 1; else val++;
-		request.getSession().
-				setAttribute("nbpage", val);
-		out.println("<h2>Vous avez chargé "+
-				val + " pages</h2>");
-		out.println("</body>");
-		out.println("</html>");
-		
+		out.println("<img src=\"img/img.jpg\" />");
 	}
 
 	/**

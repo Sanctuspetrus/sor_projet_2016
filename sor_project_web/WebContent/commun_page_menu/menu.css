@@ -1,0 +1,613 @@
+#menus {
+	position: relative;
+	z-index: 5;
+}
+
+#menus #main-menu {
+	background-color: rgba(92, 92, 92, 0.75);
+	background-image: linear-gradient(top, rgba(255, 255, 255, 0.15),
+		rgba(0, 0, 0, 0.15) );
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.15),
+		rgba(0, 0, 0, 0.15) );
+	background-image: -webkit-gradient(linear, center top, center bottom, from(rgba(255, 255,
+		255, 0.15) ), to(rgba(0, 0, 0, 0.15) ) );
+	/*border-radius: 15px 15px 0 0;
+	-moz-border-radius: 15px 15px 0 0;
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;*/
+	height: 30px;
+}
+
+.no-rgba #menus #main-menu {
+	background-color: #5c5c5c;
+}
+
+#menus #main-menu ul {
+	margin: 0 0 0 20px;
+	padding: 3px 0 0 0;
+	position: relative;
+	z-index: 3;
+}
+
+#menus #main-menu ul li {
+	border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	float: left;
+	font-family: 'FocusOSFBold', Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	list-style: none;
+	margin: 0 4px 0 5px;
+	position: relative;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+}
+
+#menus #main-menu ul li.first {
+	margin-left: 0;
+}
+
+#menus #main-menu ul li:hover {
+	background-color: #000;
+}
+
+#menus #main-menu ul li.active {
+	background-color: #f8ea56;
+	background-image: linear-gradient(top, #fcf581, #f4e02d);
+	background-image: -moz-linear-gradient(top, #fcf581, #f4e02d);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#fcf581),
+		to(#f4e02d) );
+	text-shadow: none;
+}
+
+.blue #menus #main-menu ul li.active {
+	background-color: #25bbd6;
+	background-image: linear-gradient(top, #38ddeb, #139ac2);
+	background-image: -moz-linear-gradient(top, #38ddeb, #139ac2);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#38ddeb),
+		to(#139ac2) );
+}
+
+.green #menus #main-menu ul li.active {
+	background-color: #c2cd22;
+	background-image: linear-gradient(top, #e1e633, #a4b512);
+	background-image: -moz-linear-gradient(top, #e1e633, #a4b512);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#e1e633),
+		to(#a4b512) );
+}
+
+.pink #menus #main-menu ul li.active {
+	background-color: #e30d61;
+	background-image: linear-gradient(top, #f11492, #d50733);
+	background-image: -moz-linear-gradient(top, #f11492, #d50733);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#f11492),
+		to(#d50733) );
+}
+
+.yellow #menus #main-menu ul li.active {
+	background-color: #fac30a;
+	background-image: linear-gradient(top, #fde10f, #f7a605);
+	background-image: -moz-linear-gradient(top, #fde10f, #f7a605);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#fde10f),
+		to(#f7a605) );
+}
+
+.light-blue #menus #main-menu ul li.active {
+	background-color: #c9d9ee;
+	background-image: linear-gradient(top, #e4ecf7, #afc7e6);
+	background-image: -moz-linear-gradient(top, #e4ecf7, #afc7e6);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#e4ecf7),
+		to(#afc7e6) );
+}
+
+.light-green #menus #main-menu ul li.active {
+	background-color: #a9c399;
+	background-image: linear-gradient(top, #d4e1cc, #7fa668);
+	background-image: -moz-linear-gradient(top, #d4e1cc, #7fa668);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#d4e1cc),
+		to(#7fa668) );
+}
+
+.light-pink #menus #main-menu ul li.active {
+	background-color: #c0739d;
+	background-image: linear-gradient(top, #e0adce, #a13c6e);
+	background-image: -moz-linear-gradient(top, #e0adce, #a13c6e);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#e0adce),
+		to(#a13c6e) );
+}
+
+.light-yellow #menus #main-menu ul li.active {
+	background-color: #f8ea56;
+	background-image: linear-gradient(top, #fcf581, #f4e02d);
+	background-image: -moz-linear-gradient(top, #fcf581, #f4e02d);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#fcf581),
+		to(#f4e02d) );
+}
+
+#menus #main-menu ul li .spacer {
+	background: transparent url(../images/interface/main-menu-spacer.png)
+		no-repeat 0 0;
+	display: block;
+	height: 10px;
+	overflow: hidden;
+	position: absolute;
+	right: -5px;
+	top: 8px;
+	width: 1px;
+}
+
+#menus #main-menu ul li a {
+	background: transparent url(../images/interface/dashed-light-yellow.png)
+		no-repeat 13px 11px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	padding: 0 0 0 30px;
+	text-decoration: none;
+	width: 114px;
+}
+
+.blue #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-blue.png);
+}
+
+.green #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-green.png);
+}
+
+.pink #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-pink.png);
+}
+
+.yellow #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-yellow.png);
+}
+
+.light-blue #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-light-blue.png);
+}
+
+.light-green #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-light-green.png);
+}
+
+.light-pink #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-light-pink.png);
+}
+
+.light-yellow #menus #main-menu ul li a {
+	background-image: url(../images/interface/dashed-light-yellow.png);
+}
+
+#menus #main-menu ul li:hover a {
+	color: #f8ea56;
+}
+
+.blue #menus #main-menu ul li:hover a {
+	color: #25bbd6;
+}
+
+.green #menus #main-menu ul li:hover a {
+	color: #c2cd22;
+}
+
+.pink #menus #main-menu ul li:hover a {
+	color: #ee3f85;
+}
+
+.yellow #menus #main-menu ul li:hover a {
+	color: #ffc221;
+}
+
+.light-blue #menus #main-menu ul li:hover a {
+	color: #c9d9ee;
+}
+
+.light-green #menus #main-menu ul li:hover a {
+	color: #a9c399;
+}
+
+.light-pink #menus #main-menu ul li:hover a {
+	color: #c0739d;
+}
+
+.light-yellow #menus #main-menu ul li:hover a {
+	color: #f6ec5f;
+}
+
+#menus #main-menu ul li.active a,.blue #menus #main-menu ul li.active a,.green #menus #main-menu ul li.active a,.pink #menus #main-menu ul li.active a,.yellow #menus #main-menu ul li.active a,.light-blue #menus #main-menu ul li.active a,.light-green #menus #main-menu ul li.active a,.light-pink #menus #main-menu ul li.active a,.light-yellow #menus #main-menu ul li.active a
+	{
+	background-image: url(../images/interface/dashed-grey.png);
+	color: #4a4a4b;
+}
+
+/* Niveau 2 */
+#menus #main-menu ul li ul {
+	background-color: #000;
+	border-bottom: 2px solid #f8ea56;
+	border-radius: 0 4px 4px 4px;
+	-moz-border-radius: 0 4px 4px 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	left: 0;
+	margin: 0;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter: opacity(alpha = 0);
+	overflow: visible;
+	padding: 10px 0;
+	position: absolute;
+	transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	visibility: hidden;
+	width: 220px;
+}
+
+#menus #main-menu ul li ul.right {
+	left: auto;
+	right: 0;
+}
+
+#menus #main-menu ul li ul.right li ul {
+	border-radius: 4px 0 4px 4px;
+	-moz-border-radius: 4px 0 4px 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	left: auto;
+	right: 220px;
+}
+
+.blue #menus #main-menu ul li ul {
+	border-color: #25bbd6;
+}
+
+.green #menus #main-menu ul li ul {
+	border-color: #c2cd22;
+}
+
+.pink #menus #main-menu ul li ul {
+	border-color: #ee3f85;
+}
+
+.yellow #menus #main-menu ul li ul {
+	border-color: #ffc221;
+}
+
+.light-blue #menus #main-menu ul li ul {
+	border-color: #c9d9ee;
+}
+
+.light-green #menus #main-menu ul li ul {
+	border-color: #a9c399;
+}
+
+.light-pink #menus #main-menu ul li ul {
+	border-color: #c0739d;
+}
+
+.light-yellow #menus #main-menu ul li ul {
+	border-color: #f6ec5f;
+}
+
+#menus #main-menu ul li:hover ul {
+	opacity: 1;
+	-moz-opacity: 1;
+	filter: opacity(alpha = 1);
+	visibility: visible;
+}
+
+#menus #main-menu ul li ul li {
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	float: none;
+	font-size: 12px;
+	margin: -1px 0 0 0;
+	padding: 0;
+	position: relative;
+	text-shadow: none;
+	text-transform: none;
+}
+
+#menus #main-menu ul li.active ul li {
+	background-color: transparent;
+}
+
+#menus #main-menu ul li ul li a {
+	background: none;
+	border-top: 1px dotted #3b3b3b;
+	line-height: 16px;
+	margin: 0 20px 0 20px;
+	padding: 5px 0;
+	width: 180px;
+}
+
+#menus #main-menu ul li ul li a,#menus #main-menu ul li:hover ul li a,#menus #main-menu ul li.active ul li a,.blue  #menus #main-menu ul li ul li a,.blue  #menus #main-menu ul li:hover ul li a,.blue  #menus #main-menu ul li.active ul li a,.green #menus #main-menu ul li ul li a,.green #menus #main-menu ul li:hover ul li a,.green #menus #main-menu ul li.active ul li a,.pink #menus #main-menu ul li ul li a,.pink #menus #main-menu ul li:hover ul li a,.pink #menus #main-menu ul li.active ul li a,.yellow #menus #main-menu ul li ul li a,.yellow #menus #main-menu ul li:hover ul li a,.yellow #menus #main-menu ul li.active ul li a,.light-blue #menus #main-menu ul li ul li a,.light-blue #menus #main-menu ul li:hover ul li a,.light-blue #menus #main-menu ul li.active ul li a,.light-green #menus #main-menu ul li ul li a,.light-green #menus #main-menu ul li:hover ul li a,.light-green #menus #main-menu ul li.active ul li a,.light-pink #menus #main-menu ul li ul li a,.light-pink #menus #main-menu ul li:hover ul li a,.light-pink #menus #main-menu ul li.active ul li a,.light-yellow #menus #main-menu ul li ul li a,.light-yellow #menus #main-menu ul li:hover ul li a,.light-yellow #menus #main-menu ul li.active ul li a
+	{
+	background-image: none;
+	color: #ccc;
+}
+
+#menus #main-menu ul li ul li.active a,#menus #main-menu ul li ul li:hover a
+	{
+	border-top: 1px solid #3b3b3b;
+	margin: 0;
+	padding: 5px 20px;
+}
+
+#menus #main-menu ul li ul li.first a,#menus #main-menu ul li ul li.first a:hover
+	{
+	border-top: 0;
+}
+
+#menus #main-menu ul li.active ul li a,#menus #main-menu ul li:hover ul li a
+	{
+	background-image: none;
+	color: #ccc;
+}
+
+#menus #main-menu ul li ul li.active a,#menus #main-menu ul li ul li:hover a
+	{
+	background-color: #3b3b3b;
+	color: #fff;
+}
+/* Niveau 3 */
+#menus #main-menu ul li:hover ul li ul {
+	opacity: 0;
+	-moz-opacity: 0;
+	filter: opacity(alpha = 0);
+	visibility: hidden;
+}
+
+#menus #main-menu ul li ul li ul {
+	left: 220px;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter: opacity(alpha = 0);
+	padding-top: 0;
+	position: absolute;
+	top: 0;
+	visibility: hidden;
+}
+
+#menus #main-menu ul li ul li:hover ul {
+	opacity: 1;
+	-moz-opacity: 1;
+	filter: opacity(alpha = 1);
+	visibility: visible;
+}
+
+#menus #main-menu ul li ul li:hover ul li.first {
+	border-radius: 0 4px 0 0;
+	-moz-border-radius: 0 4px 0 0;
+	-webkit-border-top-right-radius: 4px;
+}
+
+#menus #main-menu ul li ul li:hover ul li a {
+	border-top: 1px dotted #3b3b3b;
+	margin: 0 20px;
+	padding: 6px 0;
+}
+
+#menus #main-menu ul li ul li:hover ul li:hover a,#menus #main-menu ul li ul li ul li:hover a
+	{
+	border-top: 1px solid #3b3b3b;
+	margin: 0;
+	padding: 6px 20px;
+}
+
+#menus #main-menu ul li ul li ul li.first a,#menus #main-menu ul li ul li ul li.first a:hover
+	{
+	border-top: 0;
+}
+
+#menus #main-menu ul li ul li.active ul li a,#menus #main-menu ul li ul li:hover ul li a
+	{
+	color: #ccc;
+	background-color: transparent;
+}
+
+#menus #main-menu ul li ul li ul li.active a,#menus #main-menu ul li ul li ul li:hover a
+	{
+	color: #fff;
+	background-color: #3b3b3b;
+}
+
+#menus #profiles-menu {
+	background-color: rgba(0, 0, 0, 0.6);
+	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.15),
+		rgba(255, 255, 255, 0.05) );
+	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.15),
+		rgba(255, 255, 255, 0.05) );
+	background-image: -webkit-gradient(linear, center top, center bottom, from(rgba(0, 0, 0,
+		0.15) ), to(rgba(255, 255, 255, 0.05) ) );
+	border-radius: 0 0 15px 15px;
+	-moz-border-radius: 0 0 15px 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	height: 53px;
+	overflow: hidden;
+}
+
+.no-rgba #menus #profiles-menu {
+	background-color: #000;
+}
+
+#menus #profiles-menu h3 {
+	background: transparent
+		url(../images/interface/profiles-menu-spinner.png) no-repeat 10px
+		center;
+	float: left;
+	font-family: 'FocusOSFBold', Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	height: 53px;
+	line-height: 52px;
+	padding: 0 0 0 55px;
+	text-transform: lowercase;
+	width: 85px;
+}
+
+#menus #profiles-menu h3 span {
+	background: transparent url(../images/interface/profiles-menu-arrow.png)
+		no-repeat 85% center;
+	display: inline-block;
+	line-height: 12px;
+	padding: 0 35px 0 0;
+	vertical-align: middle;
+}
+
+.ie7 #menus #profiles-menu h3 span {
+	background-position: 85% 20px;
+	padding-top: 20px;
+}
+
+#menus #profiles-menu ul {
+	float: left;
+}
+
+#menus #profiles-menu ul li {
+	float: left;
+	font-family: 'FocusOSFBold', Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	list-style: none;
+	height: 53px;
+	position: relative;
+	text-transform: uppercase;
+	width: 135px;
+}
+
+#menus #profiles-menu ul li a {
+	background: transparent url(../images/interface/profiles.png) no-repeat
+		0 -5px;
+	color: #fff;
+	display: block;
+	height: 53px;
+	line-height: 52px;
+	padding: 0 0 0 45px;
+	text-decoration: none;
+	transition: background-position 0.2s ease-in-out;
+	-moz-transition: background-position 0.2s ease-in-out;
+	-webkit-transition: background-position 0.2s ease-in-out;
+}
+
+#menus #profiles-menu ul #lyceen a {
+	background-position: 0 -5px;
+}
+
+#menus #profiles-menu ul #etudiant a {
+	background-position: 0 -70px;
+}
+
+#menus #profiles-menu ul #diplome-ubo a {
+	background-position: 0 -135px;
+}
+
+#menus #profiles-menu ul #reprise-etudes-vae a {
+	background-position: 0 -200px;
+}
+
+#menus #profiles-menu ul #entreprise a {
+	background-position: 0 -265px;
+}
+
+#menus #profiles-menu ul #journaliste a {
+	background-position: 0 -330px;
+}
+
+#menus #profiles-menu ul #lyceen a:hover,#menus #profiles-menu ul #lyceen.active a
+	{
+	background-position: 0 0;
+}
+
+#menus #profiles-menu ul #etudiant a:hover,#menus #profiles-menu ul #etudiant.active a
+	{
+	background-position: 0 -65px;
+}
+
+#menus #profiles-menu ul #diplome-ubo a:hover,#menus #profiles-menu ul #diplome-ubo.active a
+	{
+	background-position: 0 -130px;
+}
+
+#menus #profiles-menu ul #reprise-etudes-vae a:hover,#menus #profiles-menu ul #reprise-etudes-vae.active a
+	{
+	background-position: 0 -195px;
+}
+
+#menus #profiles-menu ul #entreprise a:hover,#menus #profiles-menu ul #entreprise.active a
+	{
+	background-position: 0 -260px;
+}
+
+#menus #profiles-menu ul #journaliste a:hover,#menus #profiles-menu ul #journaliste.active a
+	{
+	background-position: 0 -325px;
+}
+
+#menus #profiles-menu ul li a:hover {
+	background-color: #000;
+	color: #f8ea56;
+}
+
+#menus #profiles-menu ul li.active {
+	background-image: linear-gradient(bottom, rgba(248, 234, 86, 0.25) 0%,
+		rgba(0, 0, 0, 0) 100% );
+	background-image: -o-linear-gradient(bottom, rgba(248, 234, 86, 0.25) 0%,
+		rgba(0, 0, 0, 0) 100% );
+	background-image: -moz-linear-gradient(bottom, rgba(248, 234, 86, 0.25)
+		0%, rgba(0, 0, 0, 0) 100% );
+	background-image: -webkit-linear-gradient(bottom, rgba(248, 234, 86, 0.25)
+		0%, rgba(0, 0, 0, 0) 100% );
+	background-image: -ms-linear-gradient(bottom, rgba(248, 234, 86, 0.25)
+		0%, rgba(0, 0, 0, 0) 100% );
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(248,
+		234, 86, 0.25) ), color-stop(1, rgba(0, 0, 0, 0) ) );
+}
+
+#menus #profiles-menu ul li.active a {
+	border-bottom: 3px solid #f8eb5b;
+	color: #f8ea56;
+	height: 50px;
+}
+
+#menus #profiles-menu ul li.active a:hover {
+	background-color: transparent;
+}
+
+#menus #profiles-menu ul li a span {
+	display: inline-block;
+	line-height: 12px;
+	vertical-align: middle;
+}
+
+.ie7 #menus #profiles-menu ul li a span {
+	cursor: pointer;
+	padding-top: 20px;
+}
+
+.ie7 #menus #profiles-menu ul #diplome-ubo a span,.ie7 #menus #profiles-menu ul #reprise-etudes-vae a span
+	{
+	padding-top: 15px;
+}
+
+#menus #profiles-menu ul li .spacer {
+	background: transparent
+		url(../images/interface/profiles-menu-spacer.png) no-repeat 0 0;
+	display: block;
+	height: 55px;
+	left: -2px;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 2px;
+}
