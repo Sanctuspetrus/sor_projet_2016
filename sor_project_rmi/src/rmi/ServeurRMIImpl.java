@@ -27,11 +27,11 @@ public class ServeurRMIImpl
 		base.ouvrir();
 		ArrayList<String> resList = base.test();
 		int i =0;
-		while (resList.get(i)!=null){
+		for (i=0; i<resList.size(); i++){
 			res = res+" "+resList.get(i);
-			System.out.println("RMI : meth");
-			i++;
-		}		
+			System.out.println(resList.get(i));
+			System.out.println("wololo");
+		}
 		return res;
 	}
 	
