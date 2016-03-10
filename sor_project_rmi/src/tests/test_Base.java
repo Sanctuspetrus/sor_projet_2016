@@ -12,26 +12,26 @@ import bean.*;
 import junit.framework.TestCase;
 
 public class test_Base extends TestCase{
-	
+
 	Base base;
 	Connection co;	
-	
+
 	public void setUp() {
 		base = new Base();
 	}
-	
+
 	@Test
 	public void test_null() {
 		co = base.getCo();
 		assertEquals(co, null);
 	}
-	
+
 	public void test_ouvrir_1() {
 		base.ouvrir();
 		co = base.getCo();
 		assertTrue(co!=null);
 	}
-	
+
 	public void test_ouvrir_2() throws SQLException {
 		base.ouvrir();
 		co = base.getCo();
@@ -44,11 +44,10 @@ public class test_Base extends TestCase{
 		base.fermer();
 		assertTrue(co.isClosed());		
 	}
-	
+
 	//Tests sur le cycle de vie d'un groupe
 	public void test_groupe() throws SQLException{
 		base.ouvrir();
-		co = base.getCo();
 		//Création d'un groupe de test et tests de la récupération par le nom
 		Groupe grp = new Groupe("Parti Communiste", "Le groupe des gens pas contents");
 		base.ajouter_groupe(grp);
@@ -73,7 +72,7 @@ public class test_Base extends TestCase{
 		base.supprimer_groupe(grp);
 		assertEquals(base.getGroupe(id), null);
 	}
-	
+
 	public void test_getListGroupe() throws SQLException{
 		ArrayList<Groupe> grpList = null;		
 		base.ouvrir();
@@ -91,11 +90,10 @@ public class test_Base extends TestCase{
 		base.supprimer_groupe_by_nom("Parti Communiste");
 		base.supprimer_groupe_by_nom("Les fans de BHL");
 	}
-	
+
 	//Tests sur le cycle de vie d'une animation
 	public void test_animation() throws SQLException{
 		base.ouvrir();
-		co = base.getCo();
 		//Création d'une animation de test et tests de la récupération par le nom
 		Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
 		base.ajouter_animation(anim);
@@ -119,7 +117,7 @@ public class test_Base extends TestCase{
 		base.supprimer_animation(anim);
 		assertEquals(base.getAnimation(id), null);
 	}
-	
+
 	public void test_getListAnimation() throws SQLException{
 		ArrayList<Animation> animList = null;		
 		base.ouvrir();
@@ -137,19 +135,61 @@ public class test_Base extends TestCase{
 		base.supprimer_animation_by_nom("La vie en Rouge");
 		base.supprimer_animation_by_nom("L'ennui");
 	}
-	
+
 	//Tests sur le cycle de vie d'un billet
-		public void test_billet() throws SQLException{
-			base.ouvrir();
-			co = base.getCo();
-			Billet billet = new Billet("1883-03-14");
-			base.ajouter_billet(billet);
-			ArrayList<Billet> listBillet = base.getListBillet();
-			int size = listBillet.size();
-			base.ajouter_billet(billet);
-			listBillet = base.getListBillet();
-			assertEquals(listBillet.size(), size+1);
-			assertTrue(base.getBillet(1)!=null);
-		}		
-	
+	public void test_billet() throws SQLException{
+		base.ouvrir();
+		co = base.getCo();
+		Billet billet = new Billet("1883-03-14");
+		base.ajouter_billet(billet);
+		ArrayList<Billet> listBillet = base.getListBillet();
+		int size = listBillet.size();
+		base.ajouter_billet(billet);
+		listBillet = base.getListBillet();
+		assertEquals(listBillet.size(), size+1);
+		assertTrue(base.getBillet(1)!=null);
+	}		
+
+	//Tests sur le cycle de vie d'une DateAnimation
+	public void test_DateAnimation() throws SQLException{
+		base.ouvrir();
+		co = base.getCo();
+		Animation anim = new Animation(42,"La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
+		DateAnimation datanim = new DateAnimation(42, "2016-03-28");
+		base.ajouter_dateAnimation(datanim);		
+		assertTrue(base.getDateAnimation_by_animation(anim).size() > 0);
+		assertEquals(base.getDateAnimation_by_animation(anim).get(0).getDate(), "2016-03-28 00:00:00.0");		
+		base.supprimer_dateAnimation_by_animation(anim);
+		assertEquals(base.getAnimation_by_nom("La vie en Rouge").size(), 0);
+		base.ajouter_dateAnimation(datanim);
+		int id = base.getDateAnimation_by_animation(anim).get(0).getIdDateAnimation();
+		assertTrue(base.getDateAnimation(id) != null);
+		assertEquals(base.getDateAnimation(id).getDate(), "2016-03-28 00:00:00.0");
+		datanim = base.getDateAnimation(id);
+		datanim.setDate("2005-05-05");
+		base.modifier_dateAnimation(datanim);
+		assertEquals(base.getDateAnimation(id).getDate(), "2005-05-05 00:00:00.0");
+		base.supprimer_dateAnimation(datanim);
+		assertEquals(base.getDateAnimation(id), null);
+	}
+
+	public void test_getListDateAnimation() throws SQLException{
+		ArrayList<Animation> animList = null;		
+		base.ouvrir();
+		base.supprimer_animation_by_nom("La vie en Rouge");
+		base.supprimer_animation_by_nom("L'ennui");
+		Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
+		base.ajouter_animation(anim);
+		animList = base.getListAnimation();
+		int size = animList.size();
+		anim = new Animation("L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", "2002-02-02 02:02:02", 2, 2, 2,-1);
+		base.ajouter_animation(anim);
+		animList = base.getListAnimation();
+		assertTrue(animList != null);
+		assertEquals(animList.size(), size+1);
+		base.supprimer_animation_by_nom("La vie en Rouge");
+		base.supprimer_animation_by_nom("L'ennui");
+	}
+
 }

@@ -33,7 +33,7 @@ public class ServeurRMIImpl
 	public boolean modifier_animation(Animation animation) throws RemoteException{
 		try{
 			base.ouvrir();
-			base.modifier_animation_nom(animation);
+			base.modifier_animation(animation);
 			base.fermer();
 			return true;
 		}
@@ -43,13 +43,66 @@ public class ServeurRMIImpl
 		}
 	}
 	
+	public boolean supprimer_animation(Animation animation) throws RemoteException{
+		try{
+			base.ouvrir();
+			base.supprimer_animation(animation);
+			base.fermer();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return false;
+		}
+	}
+	
+	public Groupe creer_groupe(Groupe grp) throws RemoteException{
+		try{
+			base.ouvrir();
+			base.ajouter_groupe(grp);
+			Groupe res = base.getGroupe_by_nom(grp.getNom()).get(0);
+			base.fermer();
+			return res;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
+	
+	public boolean supprimer_groupe(Groupe grp) throws RemoteException{
+		try{
+			base.ouvrir();
+			base.supprimer_groupe(grp);
+			base.fermer();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return false;
+		}
+	}
+	
+	public Billet rechercher_billet(int code) throws RemoteException{
+		try{
+			base.ouvrir();
+			Billet res = base.getBillet(code);
+			base.fermer();
+			return res;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
+	
 	public static void main(String [] args) {
 		
 		int port = 10000;
 		
 		Registry registry = null;
 		
-		// crÃ©ation registry
+		// création registry
 		try {
 			LocateRegistry.createRegistry(port);
 			registry = LocateRegistry.getRegistry(port);
@@ -60,7 +113,7 @@ public class ServeurRMIImpl
 		ServeurRMIImpl srmii = new ServeurRMIImpl();
 		ServeurRMI srmi = null;
 		
-		// crÃ©ation objet distant
+		// création objet distant
 		try {
 			srmi = (ServeurRMI) UnicastRemoteObject.
 					exportObject(srmii,0);
@@ -79,6 +132,24 @@ public class ServeurRMIImpl
 		
 		System.out.println("Serveur RMI lancé");		
 		
+	}
+
+	@Override
+	public ArrayList<Reservation> liste_animations() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Reservation> liste_reservations(int code) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Reservation creer_reservation(Reservation res) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

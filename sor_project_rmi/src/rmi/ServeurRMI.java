@@ -25,7 +25,7 @@ public interface ServeurRMI  extends Remote {
 	
 	public Groupe creer_groupe(Groupe grp) throws RemoteException;
 	
-	public Groupe supprimer_groupe(Groupe grp) throws RemoteException;
+	public boolean supprimer_groupe(Groupe grp) throws RemoteException;
 	
 	public Billet rechercher_billet(int code) throws RemoteException;
 	

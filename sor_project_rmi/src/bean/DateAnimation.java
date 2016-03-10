@@ -10,9 +10,18 @@ public class DateAnimation implements Serializable{
 	private int idAnimation;
 	private String date;
 	
-	public DateAnimation(int idDateAnimatino, String date, int idAnimation) {
+	public DateAnimation(int idDateAnimation, String date, int idAnimation) {
+		this.idDateAnimation = idDateAnimation;
+		this.date = date;
+		this.idAnimation = idAnimation;
 	}
 	
+	public DateAnimation(int idAnimation, String date) {
+		this.idDateAnimation = -1;
+		this.date = date;
+		this.idAnimation = idAnimation;
+	}
+
 	public int getIdDateAnimation() {
 		return idDateAnimation;
 	}
