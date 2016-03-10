@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class DateAnimation implements Serializable{
-
+	private static final long serialVersionUID = 1L;
 	private Animation animation;
-	private Date date;
+	private String date;
 	
 	
 	public Animation getAnimation() {
@@ -15,10 +15,10 @@ public class DateAnimation implements Serializable{
 	public void setAnimation(Animation animation) {
 		this.animation = animation;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	@Override

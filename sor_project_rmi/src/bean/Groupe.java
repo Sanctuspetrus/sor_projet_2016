@@ -3,10 +3,28 @@ package bean;
 import java.io.Serializable;
 
 public class Groupe implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private int idGroupe;
 	private String nom;
 	private String description;
 	
 	
+	public Groupe(int idGroupe, String nom, String description) {
+		this.idGroupe = idGroupe;
+		this.nom = nom;
+		this.description = description;
+	}
+	public Groupe(String nom, String description) {
+		this.idGroupe = -1;
+		this.nom = nom;
+		this.description = description;
+	}
+	public int getIdGroupe() {
+		return idGroupe;
+	}
+	public void setIdGroupe(int idGroupe) {
+		this.idGroupe = idGroupe;
+	}
 	public String getNom() {
 		return nom;
 	}
