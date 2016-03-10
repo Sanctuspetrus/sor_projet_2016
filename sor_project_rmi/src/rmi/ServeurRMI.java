@@ -13,15 +13,19 @@ public interface ServeurRMI  extends Remote {
 	
 	public boolean creer_animation(Animation animation) throws RemoteException;
 
-	boolean modifier_animation(Animation animation) throws RemoteException;
+	public boolean modifier_animation(Animation animation) throws RemoteException;
 	
-	boolean supprimer_animation(Animation animation) throws RemoteException;
+	public boolean supprimer_animation(Animation animation) throws RemoteException;
 	
 	public ArrayList<Reservation> liste_animations() throws RemoteException;
+	
+	public Animation recherche_animation() throws RemoteException;
 	
 	public ArrayList<Reservation> liste_reservations(int code) throws RemoteException;
 	
 	public Reservation creer_reservation(Reservation res) throws RemoteException;
+	
+	public Reservation supprimer_reservation(Reservation res) throws RemoteException;
 	
 	public Groupe creer_groupe(Groupe grp) throws RemoteException;
 	
