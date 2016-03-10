@@ -199,8 +199,7 @@ public class Base {
 			Statement st = co.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
-				anim = new Animation(rs.getInt("id_animation"), rs.getString("nom"), rs.getString("description"), rs.getString("photo"), 
-						rs.getString("heure_debut"), rs.getInt("duree"), rs.getInt("nb_places_dispo"), rs.getInt("nb_places_total"), rs.getInt("id_groupe"));
+				anim = new Animation(rs.getInt("id_animation"), rs.getString("nom"), rs.getString("description"), rs.getString("photo"), rs.getInt("duree"), rs.getInt("nb_places_dispo"), rs.getInt("nb_places_total"), rs.getInt("id_groupe"));
 			}
 			try {rs.close();}catch(Exception e){}
 			return anim;
@@ -244,7 +243,6 @@ public class Base {
 					+ "set nom = \""+animation.getNom()+"\", "
 							+ "description = \""+animation.getDescription()+"\", "
 							+ "photo = \""+animation.getPhoto()+"\", "
-							+ "heure_debut = \""+animation.getDate()+"\", "
 							+ "duree = "+animation.getDuree()+", "
 							+ "nb_places_dispo = "+animation.getNbPlacesDispo()+", "
 							+ "nb_places_total = "+animation.getNbPlacesTotal()+", "
@@ -262,9 +260,9 @@ public class Base {
 
 	public boolean ajouter_animation(Animation animation) {
 		try {
-			String sql = "insert into t_animation (nom, description, photo, heure_debut, duree, nb_places_dispo, nb_places_total, id_groupe) "
-					+ " values (\""+animation.getNom()+"\", \""+animation.getDescription()+"\", \""+animation.getPhoto()+"\", \""
-					+animation.getDate()+"\", "+animation.getDuree()+", "+animation.getNbPlacesDispo()+", "
+			String sql = "insert into t_animation (nom, description, photo, duree, nb_places_dispo, nb_places_total, id_groupe) "
+					+ " values (\""+animation.getNom()+"\", \""+animation.getDescription()+"\", \""+animation.getPhoto()+"\", "
+					+animation.getDuree()+", "+animation.getNbPlacesDispo()+", "
 					+animation.getNbPlacesTotal()+", "+animation.getIdGroupe()+")";
 			Statement st = co.createStatement();
 			st.executeUpdate(sql);
@@ -285,7 +283,7 @@ public class Base {
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				anim = new Animation(rs.getInt("id_animation"), rs.getString("nom"), rs.getString("description"), rs.getString("photo"), 
-						rs.getString("heure_debut"), rs.getInt("duree"), rs.getInt("nb_places_dispo"), rs.getInt("nb_places_total"), rs.getInt("id_groupe"));
+						rs.getInt("duree"), rs.getInt("nb_places_dispo"), rs.getInt("nb_places_total"), rs.getInt("id_groupe"));
 				resList.add(anim);
 			}
 			try {rs.close();}catch(Exception e){}
@@ -306,7 +304,7 @@ public class Base {
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				anim = new Animation(rs.getInt("id_animation"), rs.getString("nom"), rs.getString("description"), rs.getString("photo"), 
-						rs.getString("heure_debut"), rs.getInt("duree"), rs.getInt("nb_places_dispo"), rs.getInt("nb_places_total"), rs.getInt("id_groupe"));
+						rs.getInt("duree"), rs.getInt("nb_places_dispo"), rs.getInt("nb_places_total"), rs.getInt("id_groupe"));
 				resList.add(anim);
 			}
 			try {rs.close();}catch(Exception e){}
@@ -371,8 +369,7 @@ public class Base {
 		}		
 	}
 
-	/////////////DateAnimation//////////
-	
+	/////////////DateAnimation//////////	
 	public DateAnimation getDateAnimation(int id){
 		try {
 			DateAnimation datanim = null;
@@ -467,7 +464,143 @@ public class Base {
 			return null;
 		}
 	}
+	
+	public ArrayList<DateAnimation> getListDateAnimation(){
+		try {
+			ArrayList<DateAnimation> resList = new ArrayList<DateAnimation>();
+			DateAnimation datanim;
+			String sql = "select * from t_date_animation";
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				datanim = new DateAnimation(rs.getInt("id_date_animation"), rs.getString("heure_debut"), rs.getInt("id_animation"));
+				resList.add(datanim);
+			}
+			try {rs.close();}catch(Exception e){}
+			return resList;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getListDateAnimation() "+e.getMessage());
+			return null;
+		}
+	}
+	/*
+	/////////////Réservation//////////
+	public DateAnimation getReservation(int id){
+		try {
+			Reservation reserv = null;
+			String sql = "select * from t_reservation where id_reservation = "+id;
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				reserv = new Reservation(rs.getInt("id_date_animation"), rs.getString("heure_debut"), rs.getInt("id_animation"));
+			}
+			try {rs.close();}catch(Exception e){}
+			return datanim;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getReservation() "+e.getMessage());
+			return null;
+		}
+	}
+	
+	public boolean supprimer_reservation(Reservation reservation){
+		try {
+			String sql = "delete from t_date_animation where id_date_animation = "+datanim.getIdDateAnimation();
+			Statement st= co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.supprimer_eservation() "+e.getMessage());
+			return false;
+		}	
+	}
+	
+	public boolean supprimer_dateAnimation_by_animation(Animation animation){
+		try {
+			String sql = "delete from t_date_animation where id_animation = "+animation.getIdAnimation()+"";
+			Statement st= co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.supprimer_dateAnimation_by_animation() "+e.getMessage());
+			return false;
+		}	
+	}	
 		
+	public boolean modifier_dateAnimation(DateAnimation dateAnimation){
+
+		try {
+			String sql = "update t_date_animation "
+					+ "set id_animation = "+dateAnimation.getIdAnimation()+", "
+							+ "heure_debut = \""+dateAnimation.getDate()+"\""
+							+ " where id_date_animation = "+dateAnimation.getIdDateAnimation();
+			Statement st = co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur :  Base.modifier_dateAnimation_nom() "+e.getMessage());
+			return false;
+		}	
+	}
+
+	public boolean ajouter_dateAnimation(DateAnimation dateAnimation) {
+		try {
+			String sql = "insert into t_date_animation (id_animation, heure_debut) "
+					+ " values ("+dateAnimation.getIdAnimation()+", \""+dateAnimation.getDate()+"\")";
+			Statement st = co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.ajouter_dateAnimation() "+e.getMessage());
+			return false;
+		}		
+	}
+
+	public ArrayList<DateAnimation> getDateAnimation_by_animation(Animation anim) {
+		try {
+			ArrayList<DateAnimation> resList = new ArrayList<DateAnimation>();
+			DateAnimation datanim;
+			String sql = "select * from t_date_animation where id_animation = "+anim.getIdAnimation();
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				datanim = new DateAnimation(rs.getInt("id_date_animation"), rs.getString("heure_debut"), rs.getInt("id_animation"));
+				resList.add(datanim);
+			}
+			try {rs.close();}catch(Exception e){}
+			return resList;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getDateAnimation_by_animation() "+e.getMessage());
+			return null;
+		}
+	}
+	
+	public ArrayList<DateAnimation> getListDateAnimation(){
+		try {
+			ArrayList<DateAnimation> resList = new ArrayList<DateAnimation>();
+			DateAnimation datanim;
+			String sql = "select * from t_date_animation";
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				datanim = new DateAnimation(rs.getInt("id_date_animation"), rs.getString("heure_debut"), rs.getInt("id_animation"));
+				resList.add(datanim);
+			}
+			try {rs.close();}catch(Exception e){}
+			return resList;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getListDateAnimation() "+e.getMessage());
+			return null;
+		}
+	}
+	*/
 }
 
 

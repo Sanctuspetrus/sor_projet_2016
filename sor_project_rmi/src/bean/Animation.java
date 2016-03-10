@@ -9,31 +9,28 @@ public class Animation implements Serializable{
 	private String nom;
 	private String description;
 	private String photo;
-	private String date;
 	private int duree;
 	private int nbPlacesDispo;
 	private int nbPlacesTotal;
 	private int idGroupe;
 	private Groupe groupe;	
 	
-	public Animation(int idAnimation, String nom, String description, String photo, String date, int duree, int nbPlacesDispo, int nbPlacesTotal, int idGroupe) {
+	public Animation(int idAnimation, String nom, String description, String photo, int duree, int nbPlacesDispo, int nbPlacesTotal, int idGroupe) {
 		this.idAnimation = idAnimation;
 		this.nom = nom;
 		this.description = description;
 		this.photo = photo;
-		this.date=date;
 		this.duree = duree;
 		this.nbPlacesDispo = nbPlacesDispo;
 		this.nbPlacesTotal = nbPlacesTotal;
 		this.idGroupe = idGroupe;
 	}
 	
-	public Animation(String nom, String description, String photo, String date, int duree, int nbPlacesDispo, int nbPlacesTotal, int idGroupe) {
+	public Animation(String nom, String description, String photo, int duree, int nbPlacesDispo, int nbPlacesTotal, int idGroupe) {
 		this.idAnimation = -1;
 		this.nom = nom;
 		this.description = description;
 		this.photo = photo;
-		this.date=date;
 		this.duree = duree;
 		this.nbPlacesDispo = nbPlacesDispo;
 		this.nbPlacesTotal = nbPlacesTotal;
@@ -45,7 +42,6 @@ public class Animation implements Serializable{
 		this.nom = "";
 		this.description = "";
 		this.photo = "";
-		this.date="";
 		this.duree = -1;
 		this.nbPlacesDispo = -1;
 		this.nbPlacesTotal = -1;
@@ -75,12 +71,6 @@ public class Animation implements Serializable{
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
-	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
 	}
 	public int getDuree() {
 		return duree;

@@ -95,7 +95,7 @@ public class test_Base extends TestCase{
 	public void test_animation() throws SQLException{
 		base.ouvrir();
 		//Création d'une animation de test et tests de la récupération par le nom
-		Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
+		Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
 		base.ajouter_animation(anim);
 		assertTrue(base.getAnimation_by_nom("La vie en Rouge").size() > 0);
 		assertEquals(base.getAnimation_by_nom("La vie en Rouge").get(0).getNom(), "La vie en Rouge");
@@ -123,11 +123,11 @@ public class test_Base extends TestCase{
 		base.ouvrir();
 		base.supprimer_animation_by_nom("La vie en Rouge");
 		base.supprimer_animation_by_nom("L'ennui");
-		Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
+		Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
 		base.ajouter_animation(anim);
 		animList = base.getListAnimation();
 		int size = animList.size();
-		anim = new Animation("L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", "2002-02-02 02:02:02", 2, 2, 2,-1);
+		anim = new Animation("L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", 2, 2, 2,-1);
 		base.ajouter_animation(anim);
 		animList = base.getListAnimation();
 		assertTrue(animList != null);
@@ -154,7 +154,8 @@ public class test_Base extends TestCase{
 	public void test_DateAnimation() throws SQLException{
 		base.ouvrir();
 		co = base.getCo();
-		Animation anim = new Animation(42,"La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
+		base.supprimer_animation_by_nom("La vie en Rouge");
+		Animation anim = new Animation(42,"La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
 		base.supprimer_dateAnimation_by_animation(anim);
 		DateAnimation datanim = new DateAnimation(42, "2016-03-28");
 		base.ajouter_dateAnimation(datanim);		
@@ -172,22 +173,32 @@ public class test_Base extends TestCase{
 		assertEquals(base.getDateAnimation(id).getDate(), "2005-05-05 00:00:00.0");
 		base.supprimer_dateAnimation(datanim);
 		assertEquals(base.getDateAnimation(id), null);
+		base.supprimer_animation_by_nom("La vie en Rouge");
 	}
 
 	public void test_getListDateAnimation() throws SQLException{
-		ArrayList<Animation> animList = null;		
+		ArrayList<DateAnimation> datanimList = null;		
 		base.ouvrir();
 		base.supprimer_animation_by_nom("La vie en Rouge");
-		base.supprimer_animation_by_nom("L'ennui");
-		Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
-		base.ajouter_animation(anim);
-		animList = base.getListAnimation();
-		int size = animList.size();
-		anim = new Animation("L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", "2002-02-02 02:02:02", 2, 2, 2,-1);
-		base.ajouter_animation(anim);
-		animList = base.getListAnimation();
-		assertTrue(animList != null);
-		assertEquals(animList.size(), size+1);
+		Animation anim = new Animation(42,"La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
+		anim = new Animation(5, "L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", 2, 2, 2,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
+		anim = new Animation(42, "La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
+		DateAnimation datanim = new DateAnimation(42, "2016-03-28");
+		base.ajouter_dateAnimation(datanim);	
+		datanimList = base.getListDateAnimation();
+		int size = datanimList.size();
+		anim = new Animation(5, "L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", 2, 2, 2,-1);
+		datanim = new DateAnimation(5, "2016-03-28");
+		base.ajouter_dateAnimation(datanim);	
+		datanimList = base.getListDateAnimation();
+		assertTrue(datanimList != null);
+		assertEquals(datanimList.size(), size+1);
+		anim = new Animation(42, "La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
+		anim = new Animation(5, "L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", 2, 2, 2,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
 		base.supprimer_animation_by_nom("La vie en Rouge");
 		base.supprimer_animation_by_nom("L'ennui");
 	}
