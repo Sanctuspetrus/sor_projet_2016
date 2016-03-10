@@ -21,6 +21,11 @@ public class Billet implements Serializable{
 		this.jourValid = jourValid;
 	}
 	
+	public Billet(String jourValid){
+		this.idBillet = -1;
+		this.jourValid = jourValid;
+	}
+	
 	public Integer getIdBillet() {
 		return idBillet;
 	}

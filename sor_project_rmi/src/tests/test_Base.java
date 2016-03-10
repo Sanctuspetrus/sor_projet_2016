@@ -70,7 +70,7 @@ public class test_Base extends TestCase{
 		base.modifier_groupe(grp);
 		assertEquals(base.getGroupe(id).getDescription(), "Les ennemis du Capital");
 		//Suppression de l'animation d'id de test
-		base.supprimer_groupe(id);
+		base.supprimer_groupe(grp);
 		assertEquals(base.getGroupe(id), null);
 	}
 	
@@ -116,7 +116,7 @@ public class test_Base extends TestCase{
 		base.modifier_animation(anim);
 		assertEquals(base.getAnimation(id).getDuree(), 555);
 		//Suppression de l'animation d'id de test
-		base.supprimer_animation(id);
+		base.supprimer_animation(anim);
 		assertEquals(base.getAnimation(id), null);
 	}
 	
@@ -142,40 +142,14 @@ public class test_Base extends TestCase{
 		public void test_billet() throws SQLException{
 			base.ouvrir();
 			co = base.getCo();
-			Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
-			base.ajouter_animation(anim);
-			assertTrue(base.getAnimation_by_nom("La vie en Rouge").size() > 0);
-			assertEquals(base.getAnimation_by_nom("La vie en Rouge").get(0).getNom(), "La vie en Rouge");
-			base.supprimer_animation_by_nom("La vie en Rouge");
-			assertEquals(base.getAnimation_by_nom("La vie en Rouge").size(), 0);
-			base.ajouter_animation(anim);
-			int id = base.getAnimation_by_nom("La vie en Rouge").get(0).getIdAnimation();
-			assertTrue(base.getAnimation(id) != null);
-			assertEquals(base.getAnimation(id).getNom(), "La vie en Rouge");
-			anim = base.getAnimation(id);
-			anim.setDuree(555);
-			base.modifier_animation(anim);
-			assertEquals(base.getAnimation(id).getDuree(), 555);
-			base.supprimer_animation(id);
-			assertEquals(base.getAnimation(id), null);
-		}
-		
-		public void test_getListBillet() throws SQLException{
-			ArrayList<Animation> animList = null;		
-			base.ouvrir();
-			base.supprimer_animation_by_nom("La vie en Rouge");
-			base.supprimer_animation_by_nom("L'ennui");
-			Animation anim = new Animation("La vie en Rouge", "Conférence sur le communisme", "test2.png", "1883-03-14 00:20:55", 1337, 42, 42,-1);
-			base.ajouter_animation(anim);
-			animList = base.getListAnimation();
-			int size = animList.size();
-			anim = new Animation("L'ennui", "Conférence sur la culture de la patate en Pologne", "patate.png", "2002-02-02 02:02:02", 2, 2, 2,-1);
-			base.ajouter_animation(anim);
-			animList = base.getListAnimation();
-			assertTrue(animList != null);
-			assertEquals(animList.size(), size+1);
-			base.supprimer_animation_by_nom("La vie en Rouge");
-			base.supprimer_animation_by_nom("L'ennui");
-		}
+			Billet billet = new Billet("1883-03-14");
+			base.ajouter_billet(billet);
+			ArrayList<Billet> listBillet = base.getListBillet();
+			int size = listBillet.size();
+			base.ajouter_billet(billet);
+			listBillet = base.getListBillet();
+			assertEquals(listBillet.size(), size+1);
+			assertTrue(base.getBillet(1)!=null);
+		}		
 	
 }
