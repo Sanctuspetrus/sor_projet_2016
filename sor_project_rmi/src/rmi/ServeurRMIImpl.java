@@ -7,7 +7,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import base.Base;
+import base.*;
+import bean.*;
 
 
 public class ServeurRMIImpl 
@@ -22,8 +23,8 @@ public class ServeurRMIImpl
 	}
 	
 	@Override
-	public boolean creer_animation(String nom, String desc, String photo, int duree, int nbPlaces, int idGroupe) throws RemoteException {
-		if (base.ajouter_animation(nom, desc, photo, duree, nbPlaces)){
+	public boolean creer_animation(Animation animation) throws RemoteException {
+		if (base.ajouter_animation(animation)){
 		return true;
 		}else{return false;}
 	}
