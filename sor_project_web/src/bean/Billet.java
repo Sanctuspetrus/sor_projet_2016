@@ -1,16 +1,17 @@
 package bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 //import annotation.NonVide;
 import annotation.Table;
 
 @Table(name="t_livre")
-public class Billet {
+public class Billet implements Serializable{
 
 	private Integer idBillet;
 		
-	private Date jourValid;
+	private String jourValid;
 	
 	// création des accesseurs
 	// clic droit 
@@ -20,15 +21,15 @@ public class Billet {
 	public Integer getIdBillet() {
 		return idBillet;
 	}
-	public void setIdLivre(Integer idBillet) {
+	public void setIdBillet(Integer idBillet) {
 		this.idBillet = idBillet;
 	}
 	
-	public Date getJourValid() {
+	public String getJourValid() {
 		return jourValid;
 	}
-	public void setJourValid(Date jourValid) {
-		this.jourValid = jourValid;
+	public void setJourValid(String date) {
+		this.jourValid = date;
 	}
 	@Override
 	public String toString() {

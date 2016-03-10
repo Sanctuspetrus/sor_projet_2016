@@ -1,11 +1,12 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DateAnimation {
+public class DateAnimation implements Serializable{
 
 	private Animation animation;
-	private Date date;
+	private String date;
 	
 	
 	public Animation getAnimation() {
@@ -14,10 +15,10 @@ public class DateAnimation {
 	public void setAnimation(Animation animation) {
 		this.animation = animation;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	@Override
