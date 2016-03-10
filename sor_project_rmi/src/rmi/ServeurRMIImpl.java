@@ -43,6 +43,7 @@ public class ServeurRMIImpl
 		}
 	}
 	
+	@Override
 	public boolean supprimer_animation(Animation animation) throws RemoteException{
 		try{
 			base.ouvrir();
@@ -56,6 +57,7 @@ public class ServeurRMIImpl
 		}
 	}
 	
+	@Override
 	public Groupe creer_groupe(Groupe grp) throws RemoteException{
 		try{
 			base.ouvrir();
@@ -70,6 +72,7 @@ public class ServeurRMIImpl
 		}
 	}
 	
+	@Override
 	public boolean supprimer_groupe(Groupe grp) throws RemoteException{
 		try{
 			base.ouvrir();
@@ -83,6 +86,7 @@ public class ServeurRMIImpl
 		}
 	}
 	
+	@Override
 	public Billet rechercher_billet(int code) throws RemoteException{
 		try{
 			base.ouvrir();
@@ -95,7 +99,7 @@ public class ServeurRMIImpl
 			return null;
 		}
 	}
-	
+		
 	public static void main(String [] args) {
 		
 		int port = 10000;
@@ -148,6 +152,12 @@ public class ServeurRMIImpl
 
 	@Override
 	public Reservation creer_reservation(Reservation res) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Reservation supprimer_reservation(Reservation res) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

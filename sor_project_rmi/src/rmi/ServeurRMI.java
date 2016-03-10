@@ -18,9 +18,7 @@ public interface ServeurRMI  extends Remote {
 	public boolean supprimer_animation(Animation animation) throws RemoteException;
 	
 	public ArrayList<Reservation> liste_animations() throws RemoteException;
-	
-	public Animation recherche_animation() throws RemoteException;
-	
+		
 	public ArrayList<Reservation> liste_reservations(int code) throws RemoteException;
 	
 	public Reservation creer_reservation(Reservation res) throws RemoteException;
