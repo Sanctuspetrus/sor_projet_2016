@@ -484,19 +484,19 @@ public class Base {
 			return null;
 		}
 	}
-	/*
+	
 	/////////////Réservation//////////
-	public DateAnimation getReservation(int id){
+	public Reservation getReservation(int id){
 		try {
 			Reservation reserv = null;
 			String sql = "select * from t_reservation where id_reservation = "+id;
 			Statement st = co.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
-				reserv = new Reservation(rs.getInt("id_date_animation"), rs.getString("heure_debut"), rs.getInt("id_animation"));
+				reserv = new Reservation(rs.getInt("id_reservation"), rs.getInt("id_date_animation"), rs.getInt("id_billet"));
 			}
 			try {rs.close();}catch(Exception e){}
-			return datanim;
+			return reserv;
 		}
 		catch (Exception e) {
 			System.out.println("Erreur : Base.getReservation() "+e.getMessage());
@@ -506,101 +506,135 @@ public class Base {
 	
 	public boolean supprimer_reservation(Reservation reservation){
 		try {
-			String sql = "delete from t_date_animation where id_date_animation = "+datanim.getIdDateAnimation();
+			String sql = "delete from t_reservation where id_reservation = "+reservation.getIdReservation();
 			Statement st= co.createStatement();
 			st.executeUpdate(sql);
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur : Base.supprimer_eservation() "+e.getMessage());
+			System.out.println("Erreur : Base.supprimer_reservation() "+e.getMessage());
 			return false;
 		}	
 	}
 	
-	public boolean supprimer_dateAnimation_by_animation(Animation animation){
+	public boolean supprimer_reservation_by_billet(Billet billet){
 		try {
-			String sql = "delete from t_date_animation where id_animation = "+animation.getIdAnimation()+"";
+			String sql = "delete from t_reservation where id_billet = "+billet.getIdBillet()+"";
 			Statement st= co.createStatement();
 			st.executeUpdate(sql);
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur : Base.supprimer_dateAnimation_by_animation() "+e.getMessage());
+			System.out.println("Erreur : Base.supprimer_reservation_by_billet() "+e.getMessage());
+			return false;
+		}	
+	}
+	
+	public boolean supprimer_reservation_by_dateAnimation(DateAnimation dateAnimation){
+		try {
+			String sql = "delete from t_reservation where id_date_animation = "+dateAnimation.getIdDateAnimation()+"";
+			Statement st= co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.supprimer_reservation_by_dateAnimation() "+e.getMessage());
 			return false;
 		}	
 	}	
 		
-	public boolean modifier_dateAnimation(DateAnimation dateAnimation){
+	public boolean modifier_reservation(Reservation reservation){
 
 		try {
-			String sql = "update t_date_animation "
-					+ "set id_animation = "+dateAnimation.getIdAnimation()+", "
-							+ "heure_debut = \""+dateAnimation.getDate()+"\""
-							+ " where id_date_animation = "+dateAnimation.getIdDateAnimation();
+			String sql = "update t_reservation "
+					+ "set id_reservation = "+reservation.getIdReservation()+", "
+							+ "id_billet = "+reservation.getIdBillet()+", "
+							+ "id_date_animation = "+reservation.getIdDateAnimation()
+							+ " where id_reservation = "+reservation.getIdReservation();
 			Statement st = co.createStatement();
 			st.executeUpdate(sql);
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur :  Base.modifier_dateAnimation_nom() "+e.getMessage());
+			System.out.println("Erreur :  Base.modifier_reservation() "+e.getMessage());
 			return false;
 		}	
 	}
 
-	public boolean ajouter_dateAnimation(DateAnimation dateAnimation) {
+	public boolean ajouter_reservation(Reservation reservation) {
 		try {
-			String sql = "insert into t_date_animation (id_animation, heure_debut) "
-					+ " values ("+dateAnimation.getIdAnimation()+", \""+dateAnimation.getDate()+"\")";
+			String sql = "insert into t_reservation (id_date_animation, id_billet) "
+					+ " values ("+reservation.getIdDateAnimation()+", "+reservation.getIdBillet()+")";
 			Statement st = co.createStatement();
 			st.executeUpdate(sql);
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur : Base.ajouter_dateAnimation() "+e.getMessage());
+			System.out.println("Erreur : Base.ajouter_reservation() "+e.getMessage());
 			return false;
 		}		
 	}
 
-	public ArrayList<DateAnimation> getDateAnimation_by_animation(Animation anim) {
+	public ArrayList<Reservation> getReservation_by_dateAnimation(DateAnimation dateAnimation) {
 		try {
-			ArrayList<DateAnimation> resList = new ArrayList<DateAnimation>();
-			DateAnimation datanim;
-			String sql = "select * from t_date_animation where id_animation = "+anim.getIdAnimation();
+			ArrayList<Reservation> resList = new ArrayList<Reservation>();
+			Reservation reserv;
+			String sql = "select * from t_reservation where id_date_animation = "+dateAnimation.getIdDateAnimation()+"";
 			Statement st = co.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
-				datanim = new DateAnimation(rs.getInt("id_date_animation"), rs.getString("heure_debut"), rs.getInt("id_animation"));
-				resList.add(datanim);
+				reserv = new Reservation(rs.getInt("id_reservation"), rs.getInt("id_date_animation"), rs.getInt("id_billet"));
+				resList.add(reserv);
 			}
 			try {rs.close();}catch(Exception e){}
 			return resList;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur : Base.getDateAnimation_by_animation() "+e.getMessage());
+			System.out.println("Erreur : Base.getReservation_by_dateAnimation() "+e.getMessage());
 			return null;
 		}
 	}
 	
-	public ArrayList<DateAnimation> getListDateAnimation(){
+	public ArrayList<Reservation> getResevation_by_billet(Billet billet) {
 		try {
-			ArrayList<DateAnimation> resList = new ArrayList<DateAnimation>();
-			DateAnimation datanim;
-			String sql = "select * from t_date_animation";
+			ArrayList<Reservation> resList = new ArrayList<Reservation>();
+			Reservation reserv;
+			String sql = "select * from t_reservation where id_billet = "+billet.getIdBillet()+"";
 			Statement st = co.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
-				datanim = new DateAnimation(rs.getInt("id_date_animation"), rs.getString("heure_debut"), rs.getInt("id_animation"));
-				resList.add(datanim);
+				reserv = new Reservation(rs.getInt("id_reservation"), rs.getInt("id_date_animation"), rs.getInt("id_billet"));
+				resList.add(reserv);
 			}
 			try {rs.close();}catch(Exception e){}
 			return resList;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur : Base.getListDateAnimation() "+e.getMessage());
+			System.out.println("Erreur : Base.getResevation_by_billet() "+e.getMessage());
 			return null;
 		}
 	}
-	*/
+	
+	public ArrayList<Reservation> getListReservation(){
+		try {
+			ArrayList<Reservation> resList = new ArrayList<Reservation>();
+			Reservation reserv;
+			String sql = "select * from t_reservation";
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				reserv = new Reservation(rs.getInt("id_reservation"), rs.getInt("id_date_animation"), rs.getInt("id_billet"));
+				resList.add(reserv);
+			}
+			try {rs.close();}catch(Exception e){}
+			return resList;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getListReservation() "+e.getMessage());
+			return null;
+		}
+	}
+	
 }
 
 
