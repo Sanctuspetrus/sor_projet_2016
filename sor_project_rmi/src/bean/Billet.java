@@ -1,12 +1,13 @@
 package bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 //import annotation.NonVide;
 import annotation.Table;
 
 @Table(name="t_livre")
-public class Billet {
+public class Billet implements Serializable{
 
 	private Integer idBillet;
 		

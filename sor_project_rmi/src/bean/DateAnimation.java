@@ -1,8 +1,9 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DateAnimation {
+public class DateAnimation implements Serializable{
 
 	private Animation animation;
 	private Date date;

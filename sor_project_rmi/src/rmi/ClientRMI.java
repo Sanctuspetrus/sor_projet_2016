@@ -16,13 +16,8 @@ public class ClientRMI {
 			ServeurRMI srmi = (ServeurRMI) 
 					registry.lookup("serveurRMI");
 			
-			String res = srmi.meth();
-			
+			String res = srmi.confirmer_acces();			
 			System.out.println("res = "+res);
-			
-			res = srmi.testB();
-			
-			System.out.println("resTestB = "+res);
 		}
 		catch (Exception e) {
 			System.out.println("Erreur Client RMI "+e.getMessage());

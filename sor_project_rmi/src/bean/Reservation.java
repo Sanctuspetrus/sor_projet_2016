@@ -1,6 +1,8 @@
 package bean;
 
-public class Reservation {
+import java.io.Serializable;
+
+public class Reservation implements Serializable{
 	private Billet billet;
 	private DateAnimation animation;
 	public Billet getBillet() {

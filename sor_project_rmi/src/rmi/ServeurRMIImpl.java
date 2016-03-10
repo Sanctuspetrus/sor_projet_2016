@@ -14,25 +14,32 @@ public class ServeurRMIImpl
 	implements ServeurRMI {
 	
 	Base base = new Base();
-
+	
 	@Override
-	public String meth() throws RemoteException {
-		// TODO Auto-generated method stub
-		System.out.println("RMI : meth");
-		return "reponse du serveur rmi";
+	public String confirmer_acces() throws RemoteException {
+		System.out.println("Client => Demande de confirmation d'accès au serveur");
+		return "Serveur => Accès confirmé";
 	}
 	
-	public String testB() throws RemoteException {
-		String res ="";
-		base.ouvrir();
-		ArrayList<String> resList = base.test();
-		int i =0;
-		for (i=0; i<resList.size(); i++){
-			res = res+" "+resList.get(i);
-			System.out.println(resList.get(i));
-			System.out.println("wololo");
+	@Override
+	public boolean creer_animation(String nom, String desc, String photo, int duree, int nbPlaces, int idGroupe) throws RemoteException {
+		if (base.ajouter_animation(nom, desc, photo, duree, nbPlaces)){
+		return true;
+		}else{return false;}
+	}
+	
+	@Override
+	public boolean modifier_animation(Animation animation) throws RemoteException{
+		try{
+			base.ouvrir();
+			base.modifier_animation_nom(animation);
+			base.fermer();
+			return true;
 		}
-		return res;
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return false;
+		}
 	}
 	
 	public static void main(String [] args) {
@@ -69,8 +76,8 @@ public class ServeurRMIImpl
 					e.getMessage());			
 		}
 		
-		System.out.println("Serveur RMI lancÃ©");		
+		System.out.println("Serveur RMI lancé");		
 		
-	}	
+	}
 
 }

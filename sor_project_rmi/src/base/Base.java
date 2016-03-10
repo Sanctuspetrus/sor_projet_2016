@@ -12,17 +12,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import bean.Animation;
 import bean.Billet;
 
 public class Base {
 
-	String config = "prop"; // fichier config
+	private String config = "prop"; // fichier config
 
-	String url = null;
-	String user = null;
-	String passwd = null;
+	private String url = null;
+	private String user = null;
+	private String passwd = null;
 
-	Connection co = null;
+	private Connection co = null;
+	public Connection getCo(){
+		return this.co;
+	}
 	
 	static {
 		try {
@@ -88,8 +92,113 @@ public class Base {
 		catch (Exception e) {
 			System.out.println("erreur base.test "+e.getMessage());
 		}
-		return resList;
+		return resList; 
 
+	}
+	
+	public ArrayList<Animation> getAnimation(int id){
+		try {
+			ArrayList<Animation> resList = new ArrayList<Animation>();
+			Animation anim;
+			String sql = "select * from t_animation where id_animation = "+id;
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				anim = new Animation(rs.getString("id_animation"), rs.getString("nom"), rs.getString("description"), rs.getString("photo"), 
+						rs.getString("heure_debut"), rs.getString("duree"), rs.getString("nb_places_dispo"), rs.getString("nb_places_total"), rs.getString("id_groupe"));
+				resList.add(anim);
+			}
+			try {rs.close();}catch(Exception e){}
+			return resList;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getAnimation() "+e.getMessage());
+			return null;
+		}
+	}
+	
+	public boolean supprimer_animation(int idAnimation){
+		try {
+			String sql = "delete from t_animation where id_animation = "+idAnimation;
+			Statement st= co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.supprimer_animation() "+e.getMessage());
+			return false;
+		}	
+	}
+	
+	public boolean supprimer_animation_by_nom(String nom){
+		try {
+			String sql = "delete from t_animation where nom = '"+nom+"'";
+			Statement st= co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.supprimer_animation_by_nom() "+e.getMessage());
+			return false;
+		}	
+	}
+		
+	public boolean modifier_animation(Animation animation){
+		try {
+			String sql = "update t_animation "
+					+ "set nom = '"+animation.getNom()+"',"
+							+ "description = "+animation.getNom()+"',"
+							+ "photo = "+animation.getNom()+"',"
+							+ "heure_debut = "
+							+ "duree = "
+							+ "nb_places_dispo = "
+							+ "nb_places_total = "
+							+ "id_groupe = "
+							+ " where id_animation = "+animation.getIdAnimation();
+			System.out.println(sql);
+			Statement st = co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur :  Base.modifier_animation_nom() "+e.getMessage());
+			return false;
+		}	
+	}
+
+	public boolean ajouter_animation(String nom, String desc, String photo, String date, int duree, int nbPlaces) {
+		try {
+			String sql = "insert into t_animation (nom, description, photo, heure_debut, duree, nb_places_dispo, nb_places_total) "
+					+ " values ('"+nom+"', '"+desc+"', '"+photo+"', '"+date+"', "+duree+", "+nbPlaces+", "+nbPlaces+")";
+			Statement st = co.createStatement();
+			st.executeUpdate(sql);
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.ajouter_animation() "+e.getMessage());
+			return false;
+		}		
+	}
+
+	public ArrayList<Animation> getAnimation_by_nom(String nom) {
+		try {
+			ArrayList<Animation> resList = new ArrayList<Animation>();
+			Animation anim;
+			String sql = "select * from t_animation where nom = '"+nom+"'";
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				anim = new Animation(rs.getString("id_animation"), rs.getString("nom"), rs.getString("description"), rs.getString("photo"), 
+						rs.getString("heure_debut"), rs.getString("duree"), rs.getString("nb_places_dispo"), rs.getString("nb_places_total"), rs.getString("id_groupe"));
+				resList.add(anim);
+			}
+			try {rs.close();}catch(Exception e){}
+			return resList;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getAnimation_by_nom() "+e.getMessage());
+			return null;
+		}
 	}
 }
 
