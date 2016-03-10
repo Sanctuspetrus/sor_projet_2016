@@ -31,4 +31,6 @@ public interface ServeurRMI  extends Remote {
 	
 	public Billet rechercher_billet(int code) throws RemoteException;
 	
+	public ArrayList<Groupe> liste_groupe() throws RemoteException;
+	
 }
