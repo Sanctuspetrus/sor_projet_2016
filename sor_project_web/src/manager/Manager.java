@@ -4,9 +4,9 @@ public class Manager {
 
 	// classe pour la création
 	// d'un objet persistant
-	
-	boolean identifie = false;
-	String code = "";
+	private boolean admin = false;
+	private boolean identifie = false;
+	private String code = "";
 
 	public boolean isIdentifie() {
 		return identifie;
@@ -23,4 +23,14 @@ public class Manager {
 	public void setCode(String c) {
 		this.code = c;
 	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+	
+	
 }

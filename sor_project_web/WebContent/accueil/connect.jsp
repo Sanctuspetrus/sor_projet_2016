@@ -19,15 +19,7 @@
 <jsp:include page="../commun_page_menu/menu.jsp" />
 <h1>Accueil</h1>
 
-<%
-	if(manager.isIdentifie())
-		response.sendRedirect("../accueil/connect.jsp");
-	else
-		response.sendRedirect("../accueil/deconnect.jsp");
-%>
-
-
-<p>Cette page est normalement inaccessible!</p>
+<p>Réservations pour le billet n°${manager.code}</p>
 
 </body>
 </html>
