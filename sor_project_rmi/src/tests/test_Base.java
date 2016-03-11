@@ -150,7 +150,7 @@ public class test_Base extends TestCase{
 		base.ajouter_billet(billet);
 		listBillet = base.getListBillet();
 		assertEquals(listBillet.size(), size+1);
-		assertTrue(base.getBillet(1)!=null);
+		assertTrue(base.getBillet(1000)!=null);
 		base.fermer();
 	}		
 

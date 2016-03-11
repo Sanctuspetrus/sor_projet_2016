@@ -21,9 +21,9 @@ public interface ServeurRMI  extends Remote {
 		
 	public ArrayList<Reservation> liste_reservations(int code) throws RemoteException;
 	
-	public Reservation creer_reservation(Reservation res) throws RemoteException;
+	public boolean creer_reservation(Reservation res) throws RemoteException;
 	
-	public Reservation supprimer_reservation(Reservation res) throws RemoteException;
+	public boolean supprimer_reservation(Reservation res) throws RemoteException;
 	
 	public Groupe creer_groupe(Groupe grp) throws RemoteException;
 	
@@ -40,5 +40,17 @@ public interface ServeurRMI  extends Remote {
 	public Groupe getGroupe(int id) throws RemoteException;
 
 	ArrayList<DateAnimation> liste_dateAnimations() throws RemoteException;
+
+	boolean modifier_reservation(Reservation res) throws RemoteException;
+
+	ArrayList<Reservation> liste_reservations_by_billet(Billet billet) throws RemoteException;
+
+	ArrayList<Reservation> liste_reservations_by_dateAnimation(DateAnimation datanim) throws RemoteException;
+
+	ArrayList<DateAnimation> liste_dateAnimations_by_animation(Animation anim) throws RemoteException;
+
+	boolean supprimer_dateAnimation(DateAnimation da) throws RemoteException;
+
+	boolean modifier_dateAnimatin(DateAnimation datanim) throws RemoteException;
 	
 }
