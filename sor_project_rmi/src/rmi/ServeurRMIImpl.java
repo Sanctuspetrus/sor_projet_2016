@@ -99,6 +99,20 @@ public class ServeurRMIImpl
 			return null;
 		}
 	}
+	
+	@Override
+	public ArrayList<Groupe> liste_groupe() throws RemoteException {
+		try{
+			base.ouvrir();
+			ArrayList<Groupe> res = base.getListGroupe();
+			base.fermer();
+			return res;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
 		
 	public static void main(String [] args) {
 		
@@ -160,7 +174,7 @@ public class ServeurRMIImpl
 	public Reservation supprimer_reservation(Reservation res) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}	
 
 	@Override
 	public ArrayList<Groupe> liste_groupe() throws RemoteException {
