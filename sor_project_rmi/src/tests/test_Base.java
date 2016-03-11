@@ -150,7 +150,7 @@ public class test_Base extends TestCase{
 		base.ajouter_billet(billet);
 		listBillet = base.getListBillet();
 		assertEquals(listBillet.size(), size+1);
-		assertTrue(base.getBillet(1)!=null);
+		assertTrue(base.getBillet(1000)!=null);
 		base.fermer();
 	}		
 
@@ -215,6 +215,7 @@ public class test_Base extends TestCase{
 		
 		base.supprimer_animation_by_nom("Chez les Riches");
 		Animation anim = new Animation(21,"Chez les Riches", "Conférence sur l'argent", "test3.png", 9999, 2, 2,-1);
+		Animation anim2 = anim;
 		base.supprimer_dateAnimation_by_animation(anim);
 		DateAnimation datanim = new DateAnimation(21, "2061-05-25");
 		base.ajouter_dateAnimation(datanim);
@@ -239,10 +240,14 @@ public class test_Base extends TestCase{
 		idDatanim = base.getDateAnimation_by_animation(anim).get(0).getIdDateAnimation();
 		
 		reserv.setIdDateAnimation(idDatanim);
-		System.out.println(reserv);
 		base.modifier_reservation(reserv);
 		assertEquals(base.getDateAnimation(idDatanim).getDate(), "2016-03-28 00:00:00.0");
 		
+		base.supprimer_dateAnimation_by_animation(anim);
+		base.supprimer_dateAnimation_by_animation(anim2);
+		base.supprimer_animation_by_nom("La vie en Rouge");
+		base.supprimer_animation_by_nom("L'ennui");
+		base.supprimer_reservation(reserv);		
 	}
 
 }
