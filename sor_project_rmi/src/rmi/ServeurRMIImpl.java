@@ -70,12 +70,26 @@ public class ServeurRMIImpl	implements ServeurRMI {
 		}
 	}
 	
+	@Override
+	public ArrayList<Groupe> liste_groupe() throws RemoteException {
+		try{
+			base.ouvrir();
+			this.listGroupe = base.getListGroupe();
+			base.fermer();
+			return listGroupe;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
+	
 	//Animation
 	
 	@Override
 	public boolean creer_animation(Animation animation) throws RemoteException {
 		base.ouvrir();
-		if (base.ajouter_animation(animation)){
+		if (base.ajouter_animation(animation)){			
 			base.fermer();	
 			return true;
 		}else{base.fermer();return false;}
@@ -110,12 +124,19 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	}
 
 	@Override
-	public Billet rechercher_billet(int code) throws RemoteException{
+	public ArrayList<Animation> liste_animations() throws RemoteException {
 		try{
-			base.ouvrir();
-			Billet res = base.getBillet(code);
+			base.ouvrir();			
+			this.listAnim = base.getListAnimation();
+			for (int i=0; i<listAnim.size();i++){
+				for (int j=0; j<listGroupe.size();j++){
+					if (listGroupe.get(j).getIdGroupe() == listAnim.get(i).getIdGroupe()){
+						listAnim.get(i).setGroupe(listGroupe.get(j));
+					}
+				}
+			}
 			base.fermer();
-			return res;
+			return listAnim;
 		}
 		catch (Exception e) {
 			System.out.println("Erreur Client RMI "+e.getMessage());
@@ -123,13 +144,15 @@ public class ServeurRMIImpl	implements ServeurRMI {
 		}
 	}
 	
-	@Override
-	public ArrayList<Groupe> liste_groupe() throws RemoteException {
+	//Billet
+	
+	@Override	
+	public Billet rechercher_billet(int code) throws RemoteException{
 		try{
 			base.ouvrir();
-			this.listGroupe = base.getListGroupe();
+			Billet res = base.getBillet(code);
 			base.fermer();
-			return listGroupe;
+			return res;
 		}
 		catch (Exception e) {
 			System.out.println("Erreur Client RMI "+e.getMessage());
@@ -150,7 +173,86 @@ public class ServeurRMIImpl	implements ServeurRMI {
 			return null;
 		}
 	}
-		
+			
+	//DateAnimation
+	
+	@Override
+	public boolean creer_dateAnimation(DateAnimation da) throws RemoteException {
+		base.ouvrir();
+		if (base.ajouter_dateAnimation(da)){			
+			base.fermer();	
+			return true;
+		}else{base.fermer();return false;}
+	}
+	
+	@Override
+	public ArrayList<DateAnimation> liste_dateAnimations() throws RemoteException {
+		try{
+			base.ouvrir();			
+			this.listDateAnim = base.getListDateAnimation();
+			for (int i=0; i<listDateAnim.size();i++){
+				for (int j=0; j<listAnim.size();j++){
+					if (listAnim.get(j).getIdAnimation() == listDateAnim.get(i).getIdAnimation()){
+						listDateAnim.get(i).setAnimation(listAnim.get(j));
+					}
+				}
+			}
+			base.fermer();
+			return listDateAnim;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
+	
+	//Reservation
+	
+	@Override
+	public Reservation creer_reservation(Reservation res) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Reservation supprimer_reservation(Reservation res) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	@Override
+	public ArrayList<Reservation> liste_reservations(int code) throws RemoteException {
+		try{
+			base.ouvrir();			
+			this.listReserv = base.getListReservation();
+			for (int i=0; i<listReserv.size();i++){
+				for (int j=0; j<listDateAnim.size();j++){
+					if (listDateAnim.get(j).getIdDateAnimation() == listReserv.get(i).getIdDateAnimation()){
+						listReserv.get(i).setDateAnimation(listDateAnim.get(j));
+					}
+				}
+			}
+			this.listReserv = base.getListReservation();
+			for (int i=0; i<listReserv.size();i++){
+				for (int j=0; j<listBillet.size();j++){
+					if (listBillet.get(j).getIdBillet() == listReserv.get(i).getIdBillet()){
+						listReserv.get(i).setBillet(listBillet.get(j));
+					}
+				}
+			}
+			base.fermer();
+			return listReserv;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
+	
+
+	//Main
+	
 	public static void main(String [] args) {
 		
 		int port = 10000;
@@ -189,51 +291,4 @@ public class ServeurRMIImpl	implements ServeurRMI {
 		
 	}
 
-	@Override
-	public ArrayList<Animation> liste_animations() throws RemoteException {
-		try{
-			base.ouvrir();			
-			this.listAnim = base.getListAnimation();
-			for (int i=0; i<listAnim.size();i++){
-				for (int j=0; j<listGroupe.size();j++){
-					if (listGroupe.get(j).getIdGroupe() == listAnim.get(i).getIdGroupe()){
-						listAnim.get(i).setGroupe(listGroupe.get(j));
-					}
-				}
-			}
-			base.fermer();
-			return listAnim;
-		}
-		catch (Exception e) {
-			System.out.println("Erreur Client RMI "+e.getMessage());
-			return null;
-		}
-	}
-
-	@Override
-	public ArrayList<Reservation> liste_reservations(int code) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Reservation creer_reservation(Reservation res) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Reservation supprimer_reservation(Reservation res) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	@Override
-	public DateAnimation creer_dateAnimation(DateAnimation da) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 }
