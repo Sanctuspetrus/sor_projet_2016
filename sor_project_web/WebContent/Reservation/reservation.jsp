@@ -1,4 +1,4 @@
-<%@page import="bean.Billet"%>
+<%@page import="bean.Reservation"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,11 +18,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Reservation pour le billet n°${manager.code}</title>
+<title>Réservation pour le billet n°${manager.code}</title>
 </head>
 <body>
+<jsp:include page="../commun_page_menu/menu.jsp" />
 	
+		<h1>Réservation pour le billet n°${manager.code}</h1>
+	<%
+
+	ArrayList<Reservation> lr = manager.listeReservation();
 	
+	if(lr!=null){
+		out.println("<ul>");
+		for (Reservation r : lr) {
+			out.println("<li>"+r.getAnimation().getAnimation().getNom()+"</li>");
+			out.println("<li>"+r.getAnimation().getDate()+"</li>");
+			
+		}
+		out.println("</ul>");
+	}else{
+		out.println("Aucune réservation trouvée");
+	}
+%>
 	
 </body>
 </html>
