@@ -434,7 +434,9 @@ public class ServeurRMIImpl	implements ServeurRMI {
 		System.out.println(srmii.listDateAnim);
 		System.out.println(srmii.listAnim);
 		System.out.println(srmii.listReserv.get(0).getDateAnimation());
-
+		srmii.base.ouvrir();
+		System.out.println(srmii.base.getMaxDateAnim());
+		srmii.base.fermer();
 	}
 
 }
