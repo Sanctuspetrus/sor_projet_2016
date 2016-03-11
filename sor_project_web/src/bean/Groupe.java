@@ -1,8 +1,6 @@
 package bean;
 
-import java.io.Serializable;
-
-public class Groupe implements Serializable{
+public class Groupe {
 	private String nom;
 	private String description;
 	

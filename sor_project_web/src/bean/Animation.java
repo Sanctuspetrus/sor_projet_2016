@@ -1,52 +1,17 @@
 package bean;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.awt.image.BufferedImageFilter;
 
-public class Animation implements Serializable{
-	private int idAnimation;
+public class Animation {
 	private String nom;
 	private String description;
-	private String photo;
-	private String date;
-	//private String date;
+	private BufferedImageFilter photo;
 	private int duree;
-	private int nbPlacesDispo;
-	private int nbPlacesTotal;
-	private Groupe groupe;	
+	private int nbPlaces;
+	private Groupe groupe;
 	
-	public Animation(String idAnimation, String nom, String description, String photo, String date, String duree, String nbPlacesDispo, String nbPlacesTotal,
-			Groupe groupe) {
-		this.idAnimation = Integer.parseInt(idAnimation);
-		this.nom = nom;
-		this.description = description;
-		this.photo = photo;
-		this.date=date;
-		this.duree = Integer.parseInt(duree);
-		this.nbPlacesDispo = Integer.parseInt(nbPlacesDispo);
-		this.nbPlacesTotal = Integer.parseInt(nbPlacesTotal);
-		this.groupe = groupe;
-		
-	}
 	
-	public Animation() {
-		this.idAnimation = Integer.parseInt("1");
-		this.nom = "Place holder";
-		this.description = "Lorem ipsum";
-		this.photo = "Photo";
-		this.date="1970/01/01";
-		this.duree = Integer.parseInt("60");
-		this.nbPlacesDispo = Integer.parseInt("23");
-		this.nbPlacesTotal = Integer.parseInt("30");
-		this.groupe = new Groupe();
-	}
-
-	public int getIdAnimation() {
-		return idAnimation;
-	}
-	public void setIdAnimation(int idAnimation) {
-		this.idAnimation = idAnimation;
-	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -59,11 +24,11 @@ public class Animation implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getDate() {
-		return date;
+	public BufferedImageFilter getPhoto() {
+		return photo;
 	}
-	public void setDuree(String date) {
-		this.date = date;
+	public void setPhoto(BufferedImageFilter photo) {
+		this.photo = photo;
 	}
 	public int getDuree() {
 		return duree;
@@ -71,20 +36,12 @@ public class Animation implements Serializable{
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
-	public int getNbPlacesDispo() {
-		return nbPlacesDispo;
+	public int getNbPlaces() {
+		return nbPlaces;
 	}
-	public void setNbPlacesDispo(int nbPlacesDispo) {
-		this.nbPlacesDispo = nbPlacesDispo;
+	public void setNbPlaces(int nbPlaces) {
+		this.nbPlaces = nbPlaces;
 	}
-	
-	public int getNbPlacesTotal() {
-		return nbPlacesTotal;
-	}
-	public void setNbPlacesTotal(int nbPlacesTotal) {
-		this.nbPlacesTotal = nbPlacesTotal;
-	}
-	
 	public Groupe getGroupe() {
 		return groupe;
 	}
@@ -93,7 +50,8 @@ public class Animation implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Animation [nom=" + nom + ", description=" + description + ", photo=" + photo + ", duree=" + duree + ", nbPlacesDispo=" + nbPlacesDispo +", nbPlacesTotal=" + nbPlacesTotal + ", groupe=" + groupe + "]";
-	}	
+		return "Animation [nom=" + nom + ", description=" + description + ", photo=" + photo + ", duree=" + duree + ", nbPlaces=" + nbPlaces + ", groupe=" + groupe + "]";
+	}
+	
 	
 }
