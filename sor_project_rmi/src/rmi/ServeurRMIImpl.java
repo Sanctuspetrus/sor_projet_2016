@@ -209,6 +209,13 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	public Reservation supprimer_reservation(Reservation res) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	
+	@Override
+	public DateAnimation creer_dateAnimation(DateAnimation da) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 
 
