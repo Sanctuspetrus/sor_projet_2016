@@ -12,11 +12,11 @@ import bean.*;
 
 public class ServeurRMIImpl	implements ServeurRMI {
 
-	ArrayList<Animation> listAnim = new ArrayList<Animation>();
-	ArrayList<Groupe> listGroupe = new ArrayList<Groupe>();
-	ArrayList<DateAnimation> listDateAnim = new ArrayList<DateAnimation>();
-	ArrayList<Reservation> listReserv = new ArrayList<Reservation>();
-	ArrayList<Billet> listBillet = new ArrayList<Billet>();
+	public ArrayList<Animation> listAnim = new ArrayList<Animation>();
+	public ArrayList<Groupe> listGroupe = new ArrayList<Groupe>();
+	public ArrayList<DateAnimation> listDateAnim = new ArrayList<DateAnimation>();
+	public ArrayList<Reservation> listReserv = new ArrayList<Reservation>();
+	public ArrayList<Billet> listBillet = new ArrayList<Billet>();
 
 	Base base = new Base();
 
@@ -306,12 +306,12 @@ public class ServeurRMIImpl	implements ServeurRMI {
 			this.listReserv = base.getListReservation();
 			for (int i=0; i<listReserv.size();i++){
 				for (int j=0; j<listDateAnim.size();j++){
-					if (listDateAnim.get(j).getIdDateAnimation() == listReserv.get(i).getIdDateAnimation()){
+					if (listDateAnim.get(j).getIdDateAnimation() == listReserv.get(i).getIdDateAnimation()){						
 						listReserv.get(i).setDateAnimation(listDateAnim.get(j));
+						System.out.println(listDateAnim.get(j));
 					}
 				}
 			}
-			this.listReserv = base.getListReservation();
 			for (int i=0; i<listReserv.size();i++){
 				for (int j=0; j<listBillet.size();j++){
 					if (listBillet.get(j).getIdBillet() == listReserv.get(i).getIdBillet()){
@@ -342,7 +342,6 @@ public class ServeurRMIImpl	implements ServeurRMI {
 					}
 				}
 			}
-			this.listReserv = base.getListReservation();
 			for (int i=0; i<listReserv.size();i++){
 				for (int j=0; j<listBillet.size();j++){
 					if (listBillet.get(j).getIdBillet() == listReserv.get(i).getIdBillet()){
@@ -373,7 +372,6 @@ public class ServeurRMIImpl	implements ServeurRMI {
 					}
 				}
 			}
-			this.listReserv = base.getListReservation();
 			for (int i=0; i<listReserv.size();i++){
 				for (int j=0; j<listBillet.size();j++){
 					if (listBillet.get(j).getIdBillet() == listReserv.get(i).getIdBillet()){
@@ -393,7 +391,7 @@ public class ServeurRMIImpl	implements ServeurRMI {
 
 	//Main
 
-	public static void main(String [] args) {
+	public static void main(String [] args) throws RemoteException {
 
 		int port = 10000;
 
@@ -427,7 +425,14 @@ public class ServeurRMIImpl	implements ServeurRMI {
 					e.getMessage());			
 		}
 
-		System.out.println("Serveur RMI lancé");		
+		System.out.println("Serveur RMI lancé");
+		
+		srmii.liste_reservations(0);
+		srmii.liste_dateAnimations();
+		srmii.liste_animations();
+		System.out.println(srmii.listDateAnim);
+		System.out.println(srmii.listAnim);
+		System.out.println(srmii.listReserv.get(0).getDateAnimation());
 
 	}
 

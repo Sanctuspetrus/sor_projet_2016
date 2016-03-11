@@ -250,4 +250,16 @@ public class test_Base extends TestCase{
 		base.supprimer_reservation(reserv);		
 	}
 
+	@Test
+	public void test_getDateAnim() throws SQLException{		
+		ArrayList<DateAnimation> list= new ArrayList<DateAnimation>();
+		base.ouvrir();
+		base.supprimer_animation_by_nom("La vie en Rouge");
+		Animation anim = new Animation(42,"La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
+		DateAnimation datanim = new DateAnimation(42, "2016-03-28");
+		base.ajouter_dateAnimation(datanim);
+		list = base.getListDateAnimation();
+		System.out.println(list);
+	}
 }
