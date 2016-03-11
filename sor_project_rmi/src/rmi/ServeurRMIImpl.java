@@ -10,9 +10,13 @@ import java.util.ArrayList;
 import base.*;
 import bean.*;
 
-
-public class ServeurRMIImpl 
-	implements ServeurRMI {
+public class ServeurRMIImpl	implements ServeurRMI {
+	
+	ArrayList<Animation> listAnim = new ArrayList<Animation>();
+	ArrayList<Groupe> listGroupe = new ArrayList<Groupe>();
+	ArrayList<DateAnimation> listDateAnim = new ArrayList<DateAnimation>();
+	ArrayList<Reservation> listReserv = new ArrayList<Reservation>();
+	ArrayList<Billet> listBillet = new ArrayList<Billet>();
 	
 	Base base = new Base();
 	
@@ -106,9 +110,23 @@ public class ServeurRMIImpl
 	public ArrayList<Groupe> liste_groupe() throws RemoteException {
 		try{
 			base.ouvrir();
-			ArrayList<Groupe> res = base.getListGroupe();
+			this.listGroupe = base.getListGroupe();
 			base.fermer();
-			return res;
+			return listGroupe;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
+	
+	@Override
+	public ArrayList<Billet> liste_billet() throws RemoteException {
+		try{
+			base.ouvrir();
+			this.listBillet = base.getListBillet();
+			base.fermer();
+			return listBillet;
 		}
 		catch (Exception e) {
 			System.out.println("Erreur Client RMI "+e.getMessage());
@@ -157,10 +175,17 @@ public class ServeurRMIImpl
 	@Override
 	public ArrayList<Animation> liste_animations() throws RemoteException {
 		try{
-			base.ouvrir();
-			ArrayList<Animation> res = base.getListAnimation();
+			base.ouvrir();			
+			this.listAnim = base.getListAnimation();
+			for (int i=0; i<listAnim.size();i++){
+				for (int j=0; j<listGroupe.size();j++){
+					if (listGroupe.get(j).getIdGroupe() == listAnim.get(i).getIdGroupe()){
+						listAnim.get(i).setGroupe(listGroupe.get(j));
+					}
+				}
+			}
 			base.fermer();
-			return res;
+			return listAnim;
 		}
 		catch (Exception e) {
 			System.out.println("Erreur Client RMI "+e.getMessage());

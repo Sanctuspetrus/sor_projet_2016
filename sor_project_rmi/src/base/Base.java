@@ -54,13 +54,13 @@ public class Base {
 		url = rb.getString("url");
 		user = rb.getString("user");
 		passwd = rb.getString("passwd");
-		System.out.println("url = "+url);
-		System.out.println("user = "+user);
+		//System.out.println("url = "+url);
+		//System.out.println("user = "+user);
 
 		try {
 			co = DriverManager.getConnection(
 					url, user, passwd);
-			System.out.println("Base.ouvrir "+url);
+			//System.out.println("Base.ouvrir "+url);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(

@@ -210,37 +210,37 @@ public class test_Base extends TestCase{
 	}
 
 	//Tests sur le cycle de vie d'une Reservation
-	public void test_reservation() throws SQLException{
+	public void test_reservation() throws SQLException{		
 		base.ouvrir();
 		
 		base.supprimer_animation_by_nom("Chez les Riches");
 		Animation anim = new Animation(21,"Chez les Riches", "Conférence sur l'argent", "test3.png", 9999, 2, 2,-1);
 		base.supprimer_dateAnimation_by_animation(anim);
-		DateAnimation datanim = new DateAnimation(42, "2016-03-28");
-		base.ajouter_dateAnimation(datanim);		
-		assertTrue(base.getDateAnimation_by_animation(anim).size() > 0);
-		assertEquals(base.getDateAnimation_by_animation(anim).get(0).getDate(), "2016-03-28 00:00:00.0");
+		DateAnimation datanim = new DateAnimation(21, "2061-05-25");
+		base.ajouter_dateAnimation(datanim);
 		
-		base.supprimer_animation_by_nom("Chez les Riches");
-		anim = new Animation(21,"Chez les Riches", "Conférence sur l'argent", "test3.png", 9999, 2, 2,-1);
-		base.supprimer_dateAnimation_by_animation(anim);
-		datanim = new DateAnimation(21, "2061-05-25");
-		
-		
-		base.ajouter_dateAnimation(datanim);
-		base.ajouter_dateAnimation(datanim);
-		base.ajouter_dateAnimation(datanim);
-		base.ajouter_dateAnimation(datanim);
+		datanim = base.getDateAnimation_by_animation(anim).get(0);
 		Billet billet = new Billet("1883-03-14");
 		base.ajouter_billet(billet);
 		billet = base.getListBillet().get(0);
+		
 		Reservation reserv = new Reservation(datanim, billet);
 		base.ajouter_reservation(reserv);
 		assertTrue(base.getReservation_by_dateAnimation(datanim).size() > 0);
 		assertTrue(base.getReservation_by_billet(billet).size() > 0);
 		int idDatanim = base.getReservation_by_dateAnimation(datanim).get(0).getIdDateAnimation();
-		int idBillet = base.getReservation_by_dateAnimation(datanim).get(0).getIdBillet();
-		System.out.println(base.getDateAnimation(idDatanim).getDate());
+		assertEquals(base.getDateAnimation(idDatanim).getDate(), "2061-05-25 00:00:00.0");
+		
+		base.supprimer_animation_by_nom("Rien");
+		anim = new Animation(10,"Rien", "Conférence sur le rien", "test2.png", 1337, 42, 42,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
+		datanim = new DateAnimation(10, "2016-03-28");
+		base.ajouter_dateAnimation(datanim);
+		idDatanim = base.getDateAnimation_by_animation(anim).get(0).getIdDateAnimation();
+		
+		reserv.setIdDateAnimation(idDatanim);
+		System.out.println(reserv);
+		base.modifier_reservation(reserv);
 		assertEquals(base.getDateAnimation(idDatanim).getDate(), "2016-03-28 00:00:00.0");
 		
 	}

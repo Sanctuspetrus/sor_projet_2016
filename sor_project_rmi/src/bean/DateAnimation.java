@@ -48,7 +48,7 @@ public class DateAnimation implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "DateAnimation [animation=" + animation + ", date=" + date + "]";
+		return "DateAnimation [idAnimation=" + idAnimation + ", date=" + date + "]";
 	}
 	
 	

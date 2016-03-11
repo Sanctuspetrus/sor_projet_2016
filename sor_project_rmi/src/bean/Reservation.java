@@ -54,7 +54,7 @@ public class Reservation implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Reservation [billet=" + billet + ", animation=" + dateAnimation + "]";
+		return "Reservation [idBillet=" + idBillet + ", idDateAnimation=" + idDateAnimation + "]";
 	}
 	
 	
