@@ -19,12 +19,18 @@ if (request.getParameter("submit") != null) {
 
 	if (validation.isValide()) {
 		String code = validation.getValeurs().get("code");
-		manager.setIdentifie(true);
 		manager.setCode(code);
-		if (code.equals("ubo")) {
-			manager.setAdmin(true);
+		
+		if(manager.getBillet() != null){
+			manager.setIdentifie(true);
+			response.sendRedirect("../accueil/accueil.jsp");
 		}
-		response.sendRedirect("../accueil/accueil.jsp");
+
+		if (code.equals("ubo")) {
+			manager.setIdentifie(true);
+			manager.setAdmin(true);
+			response.sendRedirect("../accueil/accueil.jsp");
+		}
 		
 				
 	}
