@@ -29,7 +29,7 @@ if (request.getParameter("submit") != null) { // test clic sur bouton
 			request.getParameter("description"));
 	System.out.println("validation description "+validation.isValide());
 
-	// validation champ annee
+	// validation champ duree
 	if (validation.nonVide(Animation.class, 
 			"duree",
 			request.getParameter("duree"))) {
@@ -39,6 +39,15 @@ if (request.getParameter("submit") != null) { // test clic sur bouton
 	}
 	System.out.println("validation date "+validation.isValide());
 
+	// validation champ duree
+	if (validation.nonVide(Animation.class, 
+			"nbPlacesTotal",
+			request.getParameter("nbplace"))) {
+		validation.estEntier(Animation.class, 
+				"nbPlacesTotal",
+				request.getParameter("nbplace"));
+	}
+	System.out.println("validation nombre de places total "+validation.isValide());
 	
 	if (validation.isValide()) {
 		
@@ -46,7 +55,10 @@ if (request.getParameter("submit") != null) { // test clic sur bouton
 		a.setNom(validation.getValeurs().get("nom"));
 		a.setDescription(validation.getValeurs().get("description"));
 		a.setDuree(Integer.parseInt(validation.getValeurs().get("duree")));
-		a.setNbPlacesTotal(Integer.parseInt(validation.getValeurs().get("duree")));
+		a.setNbPlacesTotal(Integer.parseInt(validation.getValeurs().get("nbplace")));
+		a.setNbPlacesDispo(Integer.parseInt(validation.getValeurs().get("nbplace")));
+		
+		a.setGroupe(manager.)
 		
 		codeErreur = !manager.creer_animation(a);
 	}

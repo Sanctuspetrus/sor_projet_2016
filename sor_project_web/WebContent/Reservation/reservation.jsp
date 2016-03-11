@@ -19,17 +19,9 @@ if (request.getParameter("submit") != null) {
 			request.getParameter("animation"));
 
 	if (validation.isValide()) {
+		String idAnim = validation.getValeurs().get("animation");
 		Billet b = manager.getBillet();
-		DateAnimation da = manager.
-		
-		String code = validation.getValeurs().get("code");
-		manager.setIdentifie(true);
-		manager.setCode(code);
-		if (code.equals("ubo")) {
-			manager.setAdmin(true);
-		}
-		response.sendRedirect("../accueil/accueil.jsp");
-		
+		DateAnimation da = manager.creer_dateAnimation(idAnim);
 				
 	}
 }
@@ -53,8 +45,8 @@ if (request.getParameter("submit") != null) {
 	if(lr!=null){
 		out.println("<ul>");
 		for (Reservation r : lr) {
-			out.println("<li>"+r.getAnimation().getAnimation().getNom()+"</li>");
-			out.println("<li>"+r.getAnimation().getDate()+"</li>");
+			out.println("<li>"+r.getDateAnimation().getAnimation().getNom()+"</li>");
+			out.println("<li>"+r.getDateAnimation().getDate()+"</li>");
 			
 		}
 		out.println("</ul>");

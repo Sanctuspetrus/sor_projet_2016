@@ -53,11 +53,11 @@ public class Manager {
 	}
 	
 	public ArrayList<Groupe> listeGroupe() throws RemoteException{
-		/*this.connectToServer();
-		ArrayList<Groupe> res = srmi.liste_groupe();*/
+		this.connectToServer();
+		ArrayList<Groupe> res = srmi.liste_groupe();
 		
-		ArrayList<Groupe> res = new ArrayList<Groupe>();
-		res.add(new Groupe("Grp1","Grp1"));
+		/*ArrayList<Groupe> res = new ArrayList<Groupe>();
+		res.add(new Groupe("Grp1","Grp1"));*/
 		
 		System.out.println("Invocation listeGroupe pour " + code);
 		return res;
@@ -124,12 +124,21 @@ public class Manager {
 		return b;
 	}
 	
-	public DateAnimation creer_dateAnimation() throws RemoteException{
+	public DateAnimation creer_dateAnimation(String idAnim) throws RemoteException{
 		this.connectToServer();
-		DateAnimation da = srmi.rechercher_billet(Integer.parseInt(code));
+		DateAnimation da = new DateAnimation(Integer.parseInt(code), idAnim);
+		da = srmi.creer_dateAnimation(da);
+		
+		System.out.println("Invocation creer_dateAnimation pour " + code);
+		return da;
+	}
+	
+	public Groupe getGroupe(String idGroupe) throws RemoteException{
+		this.connectToServer();
+		Groupe grp = srmi.getGroupe(idGroupe);
 		
 		System.out.println("Invocation getBillet pour " + code);
-		return da;
+		return grp;
 	}
 	
  	private void connectToServer(){
