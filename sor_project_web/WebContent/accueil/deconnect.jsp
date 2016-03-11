@@ -21,16 +21,16 @@ if (request.getParameter("submit") != null) {
 		String code = validation.getValeurs().get("code");
 		manager.setCode(code);
 		
-		if(manager.getBillet() != null){
-			manager.setIdentifie(true);
-			response.sendRedirect("../accueil/accueil.jsp");
-		}
 
 		if (code.equals("ubo")) {
 			manager.setIdentifie(true);
 			manager.setAdmin(true);
 			response.sendRedirect("../accueil/accueil.jsp");
+		}else if(manager.getBillet() != null){
+			manager.setIdentifie(true);
+			response.sendRedirect("../accueil/accueil.jsp");
 		}
+
 		
 				
 	}

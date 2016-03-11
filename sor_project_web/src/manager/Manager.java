@@ -108,10 +108,10 @@ public class Manager {
 		return res;
 	}
 	
-	public Reservation creer_reservation(Reservation res) throws RemoteException{
+	public Boolean creer_reservation(Reservation res) throws RemoteException{
 		this.connectToServer();
 
-		Reservation res1 = srmi.creer_reservation(res);
+		boolean res1 = srmi.creer_reservation(res);
 		System.out.println("Invocation listeReservation pour " + code);
 		return res1;
 	}
@@ -127,7 +127,7 @@ public class Manager {
 	public DateAnimation creer_dateAnimation(String idAnim) throws RemoteException{
 		this.connectToServer();
 		DateAnimation da = new DateAnimation(Integer.parseInt(code), idAnim);
-		da = srmi.creer_dateAnimation(da);
+		boolean res = srmi.creer_dateAnimation(da);
 		
 		System.out.println("Invocation creer_dateAnimation pour " + code);
 		return da;

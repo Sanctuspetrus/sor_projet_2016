@@ -25,11 +25,12 @@
 	if(la!=null){
 		out.println("<ul>");
 		for (Animation a : la){
-			out.println("<li>"+a.getNom()+"</li>");
+			out.println("<li><strong>"+a.getNom()+"</strong></li>");
 			out.println("<li>"+a.getDescription()+"</li>");
 			out.println("<li>"+a.getDuree()+" minutes</li>");
 			out.println("<li>Places "+a.getNbPlacesDispo()+"/"+a.getNbPlacesTotal()+"</li>");
 			out.println("<li>Groupe "+a.getGroupe().getNom()+"</li>");
+			out.println("------------");
 			
 		}
 		out.println("</ul>");
