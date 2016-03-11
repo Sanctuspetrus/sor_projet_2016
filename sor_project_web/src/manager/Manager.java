@@ -1,19 +1,9 @@
 package manager;
 
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.ArrayList;
-
-import bean.Animation;
-import bean.Groupe;
-import bean.Reservation;
-import rmi.ServeurRMI;
-
 public class Manager {
 
-	private static ServeurRMI srmi;
-	
+	// classe pour la création
+	// d'un objet persistant
 	private boolean admin = false;
 	private boolean identifie = false;
 	private String code = "";
@@ -43,80 +33,4 @@ public class Manager {
 	}
 	
 	
-	public ArrayList<Reservation> listeReservation() throws RemoteException{
-		System.out.println("Invocation listeReservation pour " + code);
-		this.connectToServer();
-		ArrayList<Reservation> res = srmi.liste_reservations(Integer.parseInt(code));
-		return res;
-	}
-	
-	public ArrayList<Groupe> listeGroupe() throws RemoteException{
-		/*this.connectToServer();
-		ArrayList<Groupe> res = srmi.liste_groupe();*/
-		
-		ArrayList<Groupe> res = new ArrayList<Groupe>();
-		res.add(new Groupe("Grp1","Grp1"));
-		
-		System.out.println("Invocation listeGroupe pour " + code);
-		return res;
-	}
-	
-	public Groupe creer_Groupe(String nom, String desc) throws RemoteException{
-		this.connectToServer();
-		
-		Groupe gr = new Groupe(nom, desc);
-		gr = srmi.creer_groupe(gr);
-		System.out.println("Invocation listeReservation pour " + code);
-		return gr;
-	}
-
-	public ArrayList<Animation> listeAnimation() throws RemoteException{
-		this.connectToServer();
-		ArrayList<Animation> res = srmi.liste_animations();
-		
-		/*ArrayList<Animation> res = new ArrayList<Animation>();
-		Groupe grp = new Groupe("Grp1","Grp1");
-		Animation a = new Animation();
-		a.setNom("anim1");
-		a.setDescription("animation");
-		a.setDuree(60);
-		a.setNbPlacesDispo(23);
-		a.setNbPlacesTotal(30);
-		a.setGroupe(grp);
-		res.add(a);
-		
-		Animation b = new Animation();
-		b.setNom("anim2");
-		b.setDescription("animation 2");
-		b.setDuree(120);
-		b.setNbPlacesDispo(3);
-		b.setNbPlacesTotal(10);
-		b.setGroupe(grp);
-		res.add(b);*/
-		
-		System.out.println("Invocation listeAnimation pour " + code);
-		return res;
-	}
-	
-	public boolean creer_animation(Animation animation) throws RemoteException{
-		this.connectToServer();
-
-		boolean res = srmi.creer_animation(animation);
-		System.out.println("Invocation listeReservation pour " + code);
-		return res;
-	}
-	
- 	private void connectToServer(){
-		int port = 10000;
-		
-		try {
-			Registry registry = LocateRegistry.getRegistry(port);
-			
-			srmi = (ServeurRMI)registry.lookup("serveurRMI");
-			
-		}
-		catch (Exception e) {
-			System.out.println("Erreur Client RMI "+e.getMessage());
-		}
-	}
 }
