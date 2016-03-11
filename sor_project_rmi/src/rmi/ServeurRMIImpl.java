@@ -155,7 +155,7 @@ public class ServeurRMIImpl
 	}
 
 	@Override
-	public ArrayList<Reservation> liste_animations() throws RemoteException {
+	public ArrayList<Animation> liste_animations() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -178,10 +178,5 @@ public class ServeurRMIImpl
 		return null;
 	}	
 
-	@Override
-	public ArrayList<Groupe> liste_groupe() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
