@@ -49,16 +49,26 @@ if (request.getParameter("submit") != null) { // test clic sur bouton
 	}
 	System.out.println("validation nombre de places total "+validation.isValide());
 	
+	// validation champ duree
+	if (validation.nonVide(Groupe.class, 
+			"idGroupe",
+			request.getParameter("groupe"))) {
+		validation.estEntier(Animation.class, 
+				"idGroupe",
+				request.getParameter("groupe"));
+	}
+	System.out.println("validation nombre de places total "+validation.isValide());
+	
 	if (validation.isValide()) {
 		
 		Animation a = new Animation();
 		a.setNom(validation.getValeurs().get("nom"));
 		a.setDescription(validation.getValeurs().get("description"));
 		a.setDuree(Integer.parseInt(validation.getValeurs().get("duree")));
-		a.setNbPlacesTotal(Integer.parseInt(validation.getValeurs().get("nbplace")));
-		a.setNbPlacesDispo(Integer.parseInt(validation.getValeurs().get("nbplace")));
-		
-		a.setGroupe(manager.)
+		a.setNbPlacesTotal(Integer.parseInt(validation.getValeurs().get("nbPlacesTotal")));
+		a.setNbPlacesDispo(Integer.parseInt(validation.getValeurs().get("nbPlacesTotal")));
+		a.setGroupe(manager.getGroupe(validation.getValeurs().get("idGroupe")));
+		a.setIdGroupe(Integer.parseInt(validation.getValeurs().get("idGroupe")));
 		
 		codeErreur = !manager.creer_animation(a);
 	}

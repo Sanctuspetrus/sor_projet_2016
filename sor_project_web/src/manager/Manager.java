@@ -135,9 +135,9 @@ public class Manager {
 	
 	public Groupe getGroupe(String idGroupe) throws RemoteException{
 		this.connectToServer();
-		Groupe grp = srmi.getGroupe(idGroupe);
+		Groupe grp = srmi.getGroupe(Integer.parseInt(idGroupe));
 		
-		System.out.println("Invocation getBillet pour " + code);
+		System.out.println("Invocation getGroupe" +grp.getNom()+" pour " + code);
 		return grp;
 	}
 	

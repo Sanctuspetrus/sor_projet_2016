@@ -47,7 +47,6 @@ if (request.getParameter("submit") != null) {
 		for (Reservation r : lr) {
 			out.println("<li>"+r.getDateAnimation().getAnimation().getNom()+"</li>");
 			out.println("<li>"+r.getDateAnimation().getDate()+"</li>");
-			
 		}
 		out.println("</ul>");
 	}else{
