@@ -71,6 +71,7 @@ public class test_Base extends TestCase{
 		//Suppression de l'animation d'id de test
 		base.supprimer_groupe(grp);
 		assertEquals(base.getGroupe(id), null);
+		base.fermer();
 	}
 
 	public void test_getListGroupe() throws SQLException{
@@ -89,6 +90,7 @@ public class test_Base extends TestCase{
 		assertEquals(grpList.size(), size+1);
 		base.supprimer_groupe_by_nom("Parti Communiste");
 		base.supprimer_groupe_by_nom("Les fans de BHL");
+		base.fermer();
 	}
 
 	//Tests sur le cycle de vie d'une animation
@@ -116,6 +118,7 @@ public class test_Base extends TestCase{
 		//Suppression de l'animation d'id de test
 		base.supprimer_animation(anim);
 		assertEquals(base.getAnimation(id), null);
+		base.fermer();
 	}
 
 	public void test_getListAnimation() throws SQLException{
@@ -134,12 +137,12 @@ public class test_Base extends TestCase{
 		assertEquals(animList.size(), size+1);
 		base.supprimer_animation_by_nom("La vie en Rouge");
 		base.supprimer_animation_by_nom("L'ennui");
+		base.fermer();
 	}
 
 	//Tests sur le cycle de vie d'un billet
 	public void test_billet() throws SQLException{
 		base.ouvrir();
-		co = base.getCo();
 		Billet billet = new Billet("1883-03-14");
 		base.ajouter_billet(billet);
 		ArrayList<Billet> listBillet = base.getListBillet();
@@ -148,12 +151,12 @@ public class test_Base extends TestCase{
 		listBillet = base.getListBillet();
 		assertEquals(listBillet.size(), size+1);
 		assertTrue(base.getBillet(1)!=null);
+		base.fermer();
 	}		
 
 	//Tests sur le cycle de vie d'une DateAnimation
-	public void test_DateAnimation() throws SQLException{
+	public void test_dateAnimation() throws SQLException{
 		base.ouvrir();
-		co = base.getCo();
 		base.supprimer_animation_by_nom("La vie en Rouge");
 		Animation anim = new Animation(42,"La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
 		base.supprimer_dateAnimation_by_animation(anim);
@@ -174,6 +177,7 @@ public class test_Base extends TestCase{
 		base.supprimer_dateAnimation(datanim);
 		assertEquals(base.getDateAnimation(id), null);
 		base.supprimer_animation_by_nom("La vie en Rouge");
+		base.fermer();
 	}
 
 	public void test_getListDateAnimation() throws SQLException{
@@ -201,6 +205,19 @@ public class test_Base extends TestCase{
 		base.supprimer_dateAnimation_by_animation(anim);
 		base.supprimer_animation_by_nom("La vie en Rouge");
 		base.supprimer_animation_by_nom("L'ennui");
+		base.fermer();
+	}
+
+	//Tests sur le cycle de vie d'une Reservation
+	public void test_reservation() throws SQLException{
+		base.ouvrir();
+		base.supprimer_animation_by_nom("La vie en Rouge");
+		Animation anim = new Animation(42,"La vie en Rouge", "Conférence sur le communisme", "test2.png", 1337, 42, 42,-1);
+		base.supprimer_dateAnimation_by_animation(anim);
+		DateAnimation datanim = new DateAnimation(42, "2016-03-28");
+		base.ajouter_dateAnimation(datanim);
+		Billet billet = new Billet("1883-03-14");
+		base.ajouter_billet(billet);
 	}
 
 }

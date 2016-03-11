@@ -24,9 +24,11 @@ public class ServeurRMIImpl
 	
 	@Override
 	public boolean creer_animation(Animation animation) throws RemoteException {
+		base.ouvrir();
 		if (base.ajouter_animation(animation)){
-		return true;
-		}else{return false;}
+			base.fermer();	
+			return true;
+		}else{base.fermer();return false;}
 	}
 	
 	@Override
