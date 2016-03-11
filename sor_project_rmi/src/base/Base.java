@@ -485,6 +485,25 @@ public class Base {
 		}
 	}
 	
+	public int getMaxDateAnim(){
+		try {
+			int max =0;
+			DateAnimation datanim;
+			String sql = "select max(id_date_animation) from t_date_animation";
+			Statement st = co.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				max = rs.getInt("id_date_animation");
+			}
+			try {rs.close();}catch(Exception e){}
+			return max;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : Base.getListDateAnimation() "+e.getMessage());
+			return 0;
+		}
+	}
+	
 	/////////////Réservation//////////
 	public Reservation getReservation(int id){
 		try {

@@ -35,7 +35,7 @@ public interface ServeurRMI  extends Remote {
 
 	public ArrayList<Billet> liste_billet() throws RemoteException;
 	
-	public boolean creer_dateAnimation(DateAnimation da) throws RemoteException;
+	public int creer_dateAnimation(DateAnimation da) throws RemoteException;
 	
 	public Groupe getGroupe(int id) throws RemoteException;
 

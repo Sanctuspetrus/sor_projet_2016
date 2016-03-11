@@ -178,12 +178,13 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	//DateAnimation
 
 	@Override
-	public boolean creer_dateAnimation(DateAnimation da) throws RemoteException {
-		base.ouvrir();
-		if (base.ajouter_dateAnimation(da)){			
+	public int creer_dateAnimation(DateAnimation da) throws RemoteException {
+		base.ouvrir();		
+		if (base.ajouter_dateAnimation(da)){
+			int max = base.getMaxDateAnim();
 			base.fermer();	
-			return true;
-		}else{base.fermer();return false;}
+			return max;
+		}else{base.fermer();return 0;}
 	}
 
 	@Override
