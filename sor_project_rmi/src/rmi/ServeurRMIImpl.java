@@ -126,7 +126,7 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	@Override
 	public ArrayList<Animation> liste_animations() throws RemoteException {
 		try{
-			liste_groupe();
+			//liste_groupe();
 			base.ouvrir();			
 			this.listAnim = base.getListAnimation();
 			for (int i=0; i<listAnim.size();i++){
@@ -218,7 +218,7 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	public ArrayList<DateAnimation> liste_dateAnimations() throws RemoteException {
 		try{
 			base.ouvrir();
-			liste_animations();
+			//liste_animations();
 			this.listDateAnim = base.getListDateAnimation();
 			for (int i=0; i<listDateAnim.size();i++){
 				for (int j=0; j<listAnim.size();j++){
@@ -240,7 +240,7 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	public ArrayList<DateAnimation> liste_dateAnimations_by_animation(Animation anim) throws RemoteException {
 		try{
 			base.ouvrir();
-			liste_animations();
+			//liste_animations();
 			this.listDateAnim = base.getDateAnimation_by_animation(anim);
 			for (int i=0; i<listDateAnim.size();i++){
 				for (int j=0; j<listAnim.size();j++){
@@ -301,8 +301,8 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	public ArrayList<Reservation> liste_reservations(int code) throws RemoteException {
 		try{
 			base.ouvrir();	
-			liste_dateAnimations();
-			liste_billet();
+			//liste_dateAnimations();
+			//liste_billet();
 			this.listReserv = base.getListReservation();
 			for (int i=0; i<listReserv.size();i++){
 				for (int j=0; j<listDateAnim.size();j++){
@@ -332,8 +332,8 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	public ArrayList<Reservation> liste_reservations_by_dateAnimation(DateAnimation datanim) throws RemoteException {
 		try{
 			base.ouvrir();
-			liste_dateAnimations();
-			liste_billet();
+			//liste_dateAnimations();
+			//liste_billet();
 			this.listReserv = base.getReservation_by_dateAnimation(datanim);
 			for (int i=0; i<listReserv.size();i++){
 				for (int j=0; j<listDateAnim.size();j++){
@@ -363,8 +363,8 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	public ArrayList<Reservation> liste_reservations_by_billet(Billet billet) throws RemoteException {
 		try{
 			base.ouvrir();
-			liste_dateAnimations();
-			liste_billet();
+			//liste_dateAnimations();
+			//liste_billet();
 			this.listReserv = base.getReservation_by_billet(billet);
 			for (int i=0; i<listReserv.size();i++){
 				for (int j=0; j<listDateAnim.size();j++){
