@@ -178,4 +178,10 @@ public class ServeurRMIImpl
 		return null;
 	}	
 
+	@Override
+	public ArrayList<Groupe> liste_groupe() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

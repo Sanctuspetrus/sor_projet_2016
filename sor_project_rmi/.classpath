@@ -8,7 +8,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="lib" path="C:/Users/Hygnir/Documents/Master TIIL/Projet SOR/mysql-connector-java-5.1.32-bin.jar"/>
+	<classpathentry kind="lib" path="E:/Makazy/Cours/M1 TIIL/JEE_JDBC/sor_projet_2016/sor_project_rmi/WebContent/WEB-INF/lib/mysql-connector-java-5.1.32-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
 		<attributes>
