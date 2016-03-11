@@ -124,9 +124,10 @@ public class Manager {
 		return b;
 	}
 	
-	public DateAnimation creer_dateAnimation(String idAnim) throws RemoteException{
+	public DateAnimation creer_dateAnimation(String idAnim, String b_date) throws RemoteException{
 		this.connectToServer();
 		DateAnimation da = new DateAnimation(Integer.parseInt(code), idAnim);
+		da.setDate(b_date);
 		boolean res = srmi.creer_dateAnimation(da);
 		
 		System.out.println("Invocation creer_dateAnimation pour " + code);

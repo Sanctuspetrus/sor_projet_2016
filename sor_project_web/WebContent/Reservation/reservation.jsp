@@ -21,8 +21,9 @@ if (request.getParameter("submit") != null) {
 	if (validation.isValide()) {
 		String idAnim = validation.getValeurs().get("animation");
 		Billet b = manager.getBillet();
-		DateAnimation da = manager.creer_dateAnimation(idAnim);
-				
+		DateAnimation da = manager.creer_dateAnimation(idAnim,b.getJourValid());
+		Reservation res = new Reservation(da,b);
+		manager.creer_reservation(res);
 	}
 }
 %>
