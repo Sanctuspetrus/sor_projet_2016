@@ -156,8 +156,16 @@ public class ServeurRMIImpl
 
 	@Override
 	public ArrayList<Animation> liste_animations() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			base.ouvrir();
+			ArrayList<Animation> res = base.getListAnimation();
+			base.fermer();
+			return res;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
 	}
 
 	@Override

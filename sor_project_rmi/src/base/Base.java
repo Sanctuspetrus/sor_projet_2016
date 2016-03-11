@@ -595,7 +595,7 @@ public class Base {
 		}
 	}
 	
-	public ArrayList<Reservation> getResevation_by_billet(Billet billet) {
+	public ArrayList<Reservation> getReservation_by_billet(Billet billet) {
 		try {
 			ArrayList<Reservation> resList = new ArrayList<Reservation>();
 			Reservation reserv;
@@ -610,7 +610,7 @@ public class Base {
 			return resList;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur : Base.getResevation_by_billet() "+e.getMessage());
+			System.out.println("Erreur : Base.getReservation_by_billet() "+e.getMessage());
 			return null;
 		}
 	}
