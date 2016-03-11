@@ -6,6 +6,8 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 import bean.Animation;
+import bean.Billet;
+import bean.DateAnimation;
 import bean.Groupe;
 import bean.Reservation;
 import rmi.ServeurRMI;
@@ -104,6 +106,30 @@ public class Manager {
 		boolean res = srmi.creer_animation(animation);
 		System.out.println("Invocation listeReservation pour " + code);
 		return res;
+	}
+	
+	public Reservation creer_reservation(Reservation res) throws RemoteException{
+		this.connectToServer();
+
+		Reservation res1 = srmi.creer_reservation(res);
+		System.out.println("Invocation listeReservation pour " + code);
+		return res1;
+	}
+	
+	public Billet getBillet() throws RemoteException{
+		this.connectToServer();
+		Billet b = srmi.rechercher_billet(Integer.parseInt(code));
+		
+		System.out.println("Invocation getBillet pour " + code);
+		return b;
+	}
+	
+	public DateAnimation creer_dateAnimation() throws RemoteException{
+		this.connectToServer();
+		DateAnimation da = srmi.rechercher_billet(Integer.parseInt(code));
+		
+		System.out.println("Invocation getBillet pour " + code);
+		return da;
 	}
 	
  	private void connectToServer(){
