@@ -37,4 +37,6 @@ public interface ServeurRMI  extends Remote {
 	
 	public DateAnimation creer_dateAnimation(DateAnimation da) throws RemoteException;
 	
+	public Groupe getGroupe(int id) throws RemoteException;
+	
 }

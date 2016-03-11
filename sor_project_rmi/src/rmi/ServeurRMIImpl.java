@@ -26,6 +26,52 @@ public class ServeurRMIImpl	implements ServeurRMI {
 		return "Serveur => Accès confirmé";
 	}
 	
+	//Groupes	
+	@Override
+	public Groupe creer_groupe(Groupe grp) throws RemoteException{
+		try{
+			base.ouvrir();
+			base.ajouter_groupe(grp);
+			Groupe res = base.getGroupe_by_nom(grp.getNom()).get(0);
+			base.fermer();
+			return res;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}
+	
+	@Override
+	public Groupe getGroupe(int id) throws RemoteException {
+		try{
+			base.ouvrir();
+			Groupe res = base.getGroupe(id);
+					base.fermer();
+			return res;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return null;
+		}
+	}	
+	
+	@Override
+	public boolean supprimer_groupe(Groupe grp) throws RemoteException{
+		try{
+			base.ouvrir();
+			base.supprimer_groupe(grp);
+			base.fermer();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("Erreur Client RMI "+e.getMessage());
+			return false;
+		}
+	}
+	
+	//Animation
+	
 	@Override
 	public boolean creer_animation(Animation animation) throws RemoteException {
 		base.ouvrir();
@@ -62,36 +108,7 @@ public class ServeurRMIImpl	implements ServeurRMI {
 			return false;
 		}
 	}
-	
-	@Override
-	public Groupe creer_groupe(Groupe grp) throws RemoteException{
-		try{
-			base.ouvrir();
-			base.ajouter_groupe(grp);
-			Groupe res = base.getGroupe_by_nom(grp.getNom()).get(0);
-			base.fermer();
-			return res;
-		}
-		catch (Exception e) {
-			System.out.println("Erreur Client RMI "+e.getMessage());
-			return null;
-		}
-	}
-	
-	@Override
-	public boolean supprimer_groupe(Groupe grp) throws RemoteException{
-		try{
-			base.ouvrir();
-			base.supprimer_groupe(grp);
-			base.fermer();
-			return true;
-		}
-		catch (Exception e) {
-			System.out.println("Erreur Client RMI "+e.getMessage());
-			return false;
-		}
-	}
-	
+
 	@Override
 	public Billet rechercher_billet(int code) throws RemoteException{
 		try{
@@ -216,7 +233,7 @@ public class ServeurRMIImpl	implements ServeurRMI {
 	public DateAnimation creer_dateAnimation(DateAnimation da) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
-	}	
+	}
 
-
+	
 }
